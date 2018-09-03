@@ -1,0 +1,26 @@
+var fs = require('fs');
+
+function getUserHome() {
+    return process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
+}
+
+var projectConfigPath = __dirname + '/config.json';
+
+if(process.env.NODE_ENV === "test") {
+    projectConfigPath = __dirname + '/test_config.json';
+}
+
+var selectedConfigPath;
+if (fs.existsSync(projectConfigPath)) {
+    selectedConfigPath = projectConfigPath;
+} else {
+    console.log('CONFIG FILE DOESNT EXIST');
+    process.exit();
+}
+
+var finalJSONConfig = JSON.parse(fs.readFileSync(selectedConfigPath));
+
+
+
+module.exports = finalJSONConfig;
+

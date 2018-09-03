@@ -1,0 +1,37 @@
+{
+  "name": "easygaadiold",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "SET NODE_ENV=dev && node server.js",
+    "test": "mocha --timeout 10000",
+    "runDev": "gulp & nodemon server.js",
+    "runProd": "gulp run & pm2 start server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.7.3",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.10",
+    "morgan": "^1.9.0",
+    "underscore": "^1.8.3"
+  },
+  "bin": {
+    "easygaadiold": "cerateIndexes.js"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srinikandula/ezgaadinode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/srinikandula/ezgaadinode/issues"
+  },
+  "homepage": "https://github.com/srinikandula/ezgaadinode#readme"
+}
