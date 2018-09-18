@@ -60,8 +60,6 @@ app.controller('EmployeesListController', function(
   $scope.employees = [];
   $scope.employeeData = {
     name: '',
-    // password: '',
-    // confirmpassword: '',
     dep: '',
     id: '',
     dob: '',
