@@ -93,13 +93,14 @@ Employees.prototype.getEmployees = function (req, callback) {
             departmentCollection.findOne({
                 _id: employee.dep
             }, function (err, dept) {
+                console.log("===========",dept);
                 if (err) {
                     asyncCallback(true);
                 } else {
                     employee.dep = dept.Name;
+                    console.log("employee....",employee.dep,dept.Name);
                     asyncCallback(false);
                 }
-                console.log(employee.dep);
             });
         }, function (err) {
             if (err) {

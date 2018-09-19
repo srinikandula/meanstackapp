@@ -16,6 +16,7 @@ var employeSchema = new mongoose.Schema({
   password: String,
   // confirmpassword: String,
   dep: String,
+    departmentName:String,
   id: String,
   dob: Date,
   doj: Date,
@@ -35,7 +36,8 @@ var accountSchema = new mongoose.Schema({
 });
 
 var depSchema = new mongoose.Schema({
-  dep: String
+  dep: String,
+    Name:String
 });
 
 module.exports = {
