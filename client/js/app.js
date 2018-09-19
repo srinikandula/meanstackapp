@@ -122,7 +122,7 @@ app.controller('EmployeesListController', function(
     method: 'GET'
   }).then(
     function(response) {
-      $scope.employees = response.data.employees;
+      $scope.employees = response.data.data;
       console.log('got employees 245 ' + $scope.employees);
     },
     function(error) {

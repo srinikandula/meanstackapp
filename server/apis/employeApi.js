@@ -1,8 +1,14 @@
 var employeCollection = require('../models/schemas').employeCollection;
+var departmentCollection = require('../models/schemas').departmentCollection;
 var departmentApi = require('./departmentApi');
+<<<<<<< HEAD
 var _ = require('underscore');
 
 
+=======
+var async = require('async')
+var _=require('underscore');
+>>>>>>> commited
 var Employees = function() {};
 
 Employees.prototype.addEmploye = function(employeeData, req, callback) {
@@ -29,6 +35,7 @@ Employees.prototype.addEmploye = function(employeeData, req, callback) {
   });
 };
 
+<<<<<<< HEAD
 Employees.prototype.getEmployees = function(req, callback) {
   var retObj = {
     status: false,
@@ -50,8 +57,65 @@ Employees.prototype.getEmployees = function(req, callback) {
       retObj.messages.push('Success');
       retObj.employees = employees;
       callback(retObj);
+=======
+// Employees.prototype.getEmployees = function(req, callback) {
+//   var retObj = {
+//     status: false,
+//     messages: []
+//   };
+//   employeCollection.find({}).exec(function(err, employees) {
+//     var deptIds = _.uniq(employees, function(x) {
+//       return x.dep;
+//     });
+//     departmentApi.getDepatNames(deptIds, function(deptNames) {
+//       for (employee in employees) {
+//         for (dept in deptNames) {
+//           if (dept._id === employee.dep) {
+//               employee.deptName = dept.dep;
+//           }
+//         }
+//       }
+//       retObj.status = true;
+//       retObj.messages.push('Success');
+//       retObj.employees = employees;
+//       callback(retObj);
+//     });
+//   });
+// };
+
+Employees.prototype.getEmployees = function (req, callback) {
+    var retObj = {
+        status: false,
+        messages: []
+    };
+    employeCollection.find({}).exec(function (err, employees) {
+        async.each(employees, function (employee, asyncCallback) {
+            departmentCollection.findOne({
+                _id: employee.dep
+            }, function (err, dept) {
+                if (err) {
+                    asyncCallback(true);
+                } else {
+                    employee.dep = dept.Name;
+                    asyncCallback(false);
+                }
+                console.log(employee.dep);
+            });
+        }, function (err) {
+            if (err) {
+                retObj.status = false;
+                retObj.messages.push('error while finding' + JSON.stringify(err));
+                callback(retObj);
+            } else {
+                retObj.status = true;
+                retObj.messages.push('successfully');
+                retObj.data = employees;
+                callback(retObj);
+            }
+        });
+
+>>>>>>> commited
     });
-  });
 };
 
 Employees.prototype.getEmployee = function(req, callback) {
