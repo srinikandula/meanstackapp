@@ -26,12 +26,21 @@ var employeSchema = new mongoose.Schema({
   // image: String
 });
 
+var accountSchema = new mongoose.Schema({
+    userName : String,
+    password : String,
+    contactPhone: Number
+}, {
+    timestamps: true
+});
+
 var depSchema = new mongoose.Schema({
   dep: String
 });
 
 module.exports = {
-  studentCollection: mongoose.model('student', studentSchema, 'student'),
-  employeCollection: mongoose.model('employe', employeSchema, 'employe'),
-  departmentCollection: mongoose.model('department', depSchema, 'department')
+    studentCollection: mongoose.model('student', studentSchema, 'student'),
+    AccountsCollection: mongoose.model('accounts', accountSchema, 'accounts'),
+    employeCollection: mongoose.model('employe', employeSchema, 'employe'),
+    departmentCollection: mongoose.model('department', depSchema, 'department')
 };

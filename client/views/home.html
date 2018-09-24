@@ -4,7 +4,7 @@
             <div class="col">
                 <div class="form-card block form-card-hiden" style="width: 35rem;margin: 0px 20px 20px 0px;padding: 15px;">
                     <h3 style="text-align: center; color: blue;">
-                        <u>Employees Formfvfbfd</u>
+                        <u>Employees Form</u>
                     </h3>
                     <form class="needs-validation" name="empRegform" ng-submit="EmpFormSubmit()">
                         <!-- <div class="avatar-upload">
@@ -51,7 +51,7 @@
                             </label>
                             <div class="col-sm-10">
                                 <input class="form-control form-control-sm in-style" id="inputDob" type="date" ng-model="employeeData.dob"
-                                    ng-bind="calculateAge(employeeData.dob)" placeholder="Enter Date of B..." required>
+                                    ng-change="calculateAge(employeeData.dob)" placeholder="Enter Date of B..." required>
                             </div>
                         </div>
                         <div class="form-row form-box-style">

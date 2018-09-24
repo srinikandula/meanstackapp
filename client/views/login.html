@@ -1,0 +1,42 @@
+<div ng-controller="myCtrl"class="clo-xs-8 col-xs-push-2">
+    <div ng-hide="isLoggedIn">
+        <form class="login-form mt-10" ng-submit="logIn()" >
+            <div class="mt-2"><h2>LogIn:</h2></div>
+            <div class="mt-10">
+                <div class="form-group col-xs-12">
+                    <!--<label for="userName" class="col-xs-12">Username</label>-->
+                    <div class="col-xs-12">
+                        <input ng-model="loginParams.userName" type="text" class="form-control custom-form-control"
+                               id="userName"
+                               placeholder="User Name">
+                    </div>
+                </div>
+
+                <div class="form-group col-xs-12">
+                    <!--<label for="password" class="col-xs-12">Password</label>-->
+                    <div class="col-xs-12">
+                        <input ng-model="loginParams.password" type="password" class="form-control custom-form-control"
+                               id="password" placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="form-group col-xs-12">
+                    <!--<label for="userName" class="col-xs-12">Mobile</label>-->
+                    <div class="col-xs-12">
+                        <input ng-model="loginParams.contactPhone" type="text" class="form-control custom-form-control"
+                               id="contactPhone" placeholder="Mobile">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                </div>
+                <div class="col-xs-12 sign-in">
+                    <!--<a href="http://localhost:2000/login/google" target="_self">Google</a>-->
+                    <button type="submit" class="sign-in-btn btn-primary btn" ng-click="login()">Submit</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

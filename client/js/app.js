@@ -1,5 +1,18 @@
 var app = angular.module('myApp', ['ui.router']);
 
+app.factory('Service',['$http', function ($http) {
+    return {
+        login: function (loginData, success, error) {
+            $http({
+                url: '/v1/login/logIn',
+                method: "POST",
+                data:loginData
+            }).then(success, error)
+        }
+    }
+}]);
+
+
 app.config([
   '$stateProvider',
   '$locationProvider',
@@ -10,8 +23,12 @@ app.config([
         name: 'home',
         url: '/home',
         templateUrl: 'views/home.html'
-      })
-      .state({
+      }).state({
+            name: 'login',
+            url: '/login',
+            templateUrl: 'views/login.html'
+        })
+        .state({
         name: 'editEmp',
         url: '/editemp/:id',
         templateUrl: 'views/editemp.html'
@@ -160,3 +177,18 @@ app.controller('EmployeesListController', function(
 
   $scope.employeeData.doj = new Date();
 });
+
+app.controller("myCtrl",['$scope','Service','$state',function($scope,Service,$state){
+    $scope.loginParams = {};
+    $scope.isLoggedIn = false;
+    $scope.login = function(){
+        Service.login($scope.loginParams,function(successCallback){
+            if(successCallback.data.status){
+                $scope.isLoggedIn = true;
+                $state.go('home');
+            }
+        },function(errorCallback){
+
+        });
+    }
+}]);
