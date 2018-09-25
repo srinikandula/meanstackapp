@@ -1,24 +1,14 @@
-<div ng-controller="EmployeesListController">
+<div ng-controller="StudentsListController">
     <div class="container">
         <div class="row">
             <div class="col">
                 <div class="form-card block form-card-hiden" style="width: 35rem;margin: 0px 20px 20px 0px;padding: 15px;">
                     <h3 style="text-align: center; color: rgb(0, 0, 0);">
-                        <u>Employees Form</u>
+                        <u>Students Form</u>
                     </h3>
+ 
 
-
-                    <form ng-submit="EmpFormSubmit()">
-                        <!-- <div class="avatar-upload">
-                            <div class="avatar-edit">
-                                <input class="pro-style" name="EmpImg" type='file' id="imageUpload" ng-model="employeeData.image"
-                                    accept=".png, .jpg, .jpeg" />
-                                <label for="imageUpload"></label>
-                            </div>
-                            <div class="avatar-preview">
-                                <div id="imagePreview" style="background-image: url('../img/img_avatar1.png');"></div>
-                            </div>
-                        </div> -->
+                    <form>
                         <hr>
                         <div class="form-row form-box-style">
                             <label for="inputName" class="col-sm-2 col-form-label">
@@ -26,13 +16,13 @@
                             </label>
                             <div class="col-sm-10">
                                 <input class="form-control form-control-sm in-style" id="inputName" type="text"
-                                    ng-model="employeeData.name" placeholder="Enter Name" required>
+                                    {{studentData.name}} ng-model="studentData.name" placeholder="Enter Name" required>
                             </div>
                         </div>
                         <div class="form-row form-box-style">
                             <label for="inputDep" class="col-sm-2 col-form-label">DEP</label>
                             <div class="col-sm-10">
-                                <select id="inputDep" ng-model="employeeData.dep" class="form-control in-style form-control-sm"
+                                <select id="inputDep" ng-model="studentData.dep" class="form-control in-style form-control-sm"
                                     placeholder="Choose Dep ...">
                                     <option ng-repeat="department in departments" value="{{department._id}}">{{department.Name}}</option>
                                 </select>
@@ -43,7 +33,7 @@
                                 Id:
                             </label>
                             <div class="col-sm-10">
-                                <input class="form-control form-control-sm in-style" id="inputId" type="text" ng-model="employeeData.id"
+                                <input class="form-control form-control-sm in-style" id="inputId" type="text" ng-model="studentData.id"
                                     placeholder="Enter ID" required>
                             </div>
                         </div>
@@ -52,8 +42,8 @@
                                 Date.O.B:
                             </label>
                             <div class="col-sm-10">
-                                <input class="form-control form-control-sm in-style" id="inputDob" type="date" ng-model="employeeData.dob"
-                                    ng-change="calculateAge(employeeData.dob)" placeholder="Enter Date of B..." required>
+                                <input class="form-control form-control-sm in-style" id="inputDob" type="date" ng-model="studentData.dob"
+                                    ng-change="calculateAge(studentData.dob)" placeholder="Enter Date of B..." required>
                             </div>
                         </div>
                         <div class="form-row form-box-style">
@@ -61,8 +51,8 @@
                                 Date.O.J:
                             </label>
                             <div class="col-sm-10">
-                                <input class="form-control form-control-sm in-style" id="inputDoj" type="date" ng-model="employeeData.doj"
-                                      placeholder="Enter Date of J..." required>
+                                <input class="form-control form-control-sm in-style" id="inputDoj" type="date" ng-model="studentData.doj"
+                                    placeholder="Enter Date of J..." required>
                             </div>
                         </div>
                         <div class="form-group nav-item nav-link">
@@ -71,14 +61,14 @@
                             </label>
                             <div class="col-sm-6">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" ng-model="employeeData.gender" name="gridRadios"
+                                    <input class="form-check-input" type="radio" ng-model="studentData.gender" name="gridRadios"
                                         value="male" checked>
                                     <label class="form-check-label" for="gridRadios1">
                                         Male
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" ng-model="employeeData.gender" type="radio" name="gridRadios"
+                                    <input class="form-check-input" ng-model="studentData.gender" type="radio" name="gridRadios"
                                         value="female">
                                     <label class="form-check-label" for="gridRadios2">
                                         FeMale
@@ -92,36 +82,28 @@
                             </label>
                             <div class="col-sm-10">
                                 <input class="form-control form-control-sm in-style" id="inputMobileNo" type="number"
-                                    ng-model="employeeData.mobileno" placeholder="Enter MobileNo" required>
+                                    ng-model="studentData.mobileno" placeholder="Enter MobileNo" required>
                             </div>
                         </div>
                         <div class="form-row form-box-style">
                             <label for="inputAge" class="col-sm-2 col-form-label">Age: </label>
                             <div class="col-sm-10">
                                 <input class="form-control form-control-sm in-style" id="inputAge" type="number"
-                                    ng-model="employeeData.age" placeholder="Enter Age" required>
+                                    ng-model="studentData.age" placeholder="Enter Age" required>
                             </div>
                         </div>
-                        <div class="form-row form-box-style">
-                            <label for="inputSalary" class="col-sm-2 col-form-label">
-                                Salary:
-                            </label>
-                            <div class="col-sm-10">
-                                <input class="form-control  form-control-sm in-style" id="inputSalary" type="text"
-                                    ng-model="employeeData.salary" placeholder="Enter salary" required>
-                            </div>
-                        </div>
-                        <hr style="margin-bottom: 0rem;">
-                        <div class="btn-group btn-group-lg" style="width: 100%;">
-                            <button style="text-align: center;" class="btn btn-outline-success btn-style" type="submit"
-                                id="submit" value="Add">Add</button>
-                            <button style="text-align: center;" class="btn btn-outline-danger btn-style" type="reset"
-                                ng-click="resetForm()" value="Reset">Reset</button>
-                        </div>
-                    </form>
                 </div>
+                <hr style="margin-bottom: 0rem;">
+                <div class="btn-group btn-group-lg" style="width: 100%;">
+                    <button style="text-align: center;" class="btn btn-outline-success btn-style" type="submit"
+                        ng-click="StudentFormSubmit()">Add</button>
+                    <button style="text-align: center;" class="btn btn-outline-danger btn-style" type="reset" ng-click="resetForm()"
+                        value="Reset">Reset</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>
-    <ui-view></ui-view>
+</div>
+<ui-view></ui-view>
 </div>

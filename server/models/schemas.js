@@ -7,7 +7,13 @@ mongoose.connect(config.mongo.url);
 var studentSchema = new mongoose.Schema({
   name: String,
   age: Number,
-  class: String,
+  id: String,
+  dep: String,
+  departmentName:String,
+  mobileno: Number,
+  gender: String,
+  dob: Date,
+  doj: Date,
   marks: Number
 });
 
@@ -16,7 +22,7 @@ var employeSchema = new mongoose.Schema({
   password: String,
   // confirmpassword: String,
   dep: String,
-    departmentName:String,
+  departmentName:String,
   id: String,
   dob: Date,
   doj: Date,

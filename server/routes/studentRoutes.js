@@ -23,6 +23,13 @@ AuthRouter.get('/getAll', function(req, res) {
     res.json(result);
   });
 });
+
+AuthRouter.get('/getOne/:_id', function(req, res) {
+    Students.getStudent(req, function(result) {
+        res.json(result);
+    });
+});
+
 AuthRouter.get('/sort', function(req, res) {
   Students.sortStudents(req, function(result) {
     res.json(result);

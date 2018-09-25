@@ -1,5 +1,6 @@
 var employeCollection = require('../models/schemas').employeCollection;
 var departmentCollection = require('../models/schemas').departmentCollection;
+<<<<<<< HEAD
 var departmentApi = require('./departmentApi');
 <<<<<<< HEAD
 var _ = require('underscore');
@@ -10,8 +11,14 @@ var async = require('async')
 var _=require('underscore');
 >>>>>>> commited
 var Employees = function() {};
+=======
+// var departmentApi = require('./departmentApi');
+var async = require('async');
+var _ = require('underscore');
+var Employees = function () {};
+>>>>>>> commited
 
-Employees.prototype.addEmploye = function(employeeData, req, callback) {
+Employees.prototype.addEmploye = function (employeeData, req, callback) {
   var retObj = {
     status: false,
     messages: []
@@ -30,7 +37,7 @@ Employees.prototype.addEmploye = function(employeeData, req, callback) {
     salary: employeeData.salary,
     image: employeeData.image
   });
-  employeDoc.save(employeDoc, function(error, document) {
+  employeDoc.save(employeDoc, function (error, document) {
     callback();
   });
 };
@@ -84,6 +91,7 @@ Employees.prototype.getEmployees = function(req, callback) {
 // };
 
 Employees.prototype.getEmployees = function (req, callback) {
+<<<<<<< HEAD
     var retObj = {
         status: false,
         messages: []
@@ -116,17 +124,52 @@ Employees.prototype.getEmployees = function (req, callback) {
         });
 
 >>>>>>> commited
-    });
-};
-
-Employees.prototype.getEmployee = function(req, callback) {
+=======
   var retObj = {
     status: false,
     messages: []
   };
-  var query = { _id: req.params._id };
+  employeCollection.find({}).exec(function (err, employees) {
+    async.each(employees, function (employee, asyncCallback) {
+      departmentCollection.findOne({
+        _id: employee.dep
+      }, function (err, dept) {
+        console.log("===========", dept);
+        if (err) {
+          asyncCallback(true);
+        } else {
+          employee.dep = dept.Name;
+          console.log("employee....", employee.dep, dept.Name);
+          asyncCallback(false);
+        }
+      });
+    }, function (err) {
+      if (err) {
+        retObj.status = false;
+        retObj.messages.push('error while finding' + JSON.stringify(err));
+        callback(retObj);
+      } else {
+        retObj.status = true;
+        retObj.messages.push('successfully');
+        retObj.data = employees;
+        callback(retObj);
+      }
+>>>>>>> commited
+    });
 
-  employeCollection.findOne(query, function(err, result) {
+  });
+};
+
+Employees.prototype.getEmployee = function (req, callback) {
+  var retObj = {
+    status: false,
+    messages: []
+  };
+  var query = {
+    _id: req.params._id
+  };
+
+  employeCollection.findOne(query, function (err, result) {
     if (err) {
       retObj.status = false;
       retObj.messages.push('error while finding' + JSON.stringify(err));
@@ -141,14 +184,16 @@ Employees.prototype.getEmployee = function(req, callback) {
 };
 
 // ID Delete
-Employees.prototype.deleteEmployees = function(id, callback) {
+Employees.prototype.deleteEmployees = function (id, callback) {
   var retObj = {
     status: false,
     messages: []
   };
-  var query = { _id: id };
+  var query = {
+    _id: id
+  };
 
-  employeCollection.remove(query, function(err, result) {
+  employeCollection.remove(query, function (err, result) {
     if (err) {
       retObj.status = false;
       retObj.messages.push('error while deleting' + JSON.stringify(err));
@@ -163,13 +208,15 @@ Employees.prototype.deleteEmployees = function(id, callback) {
 };
 
 // Name Delete
-Employees.prototype.deleteNameEmployees = function(name, callback) {
+Employees.prototype.deleteNameEmployees = function (name, callback) {
   var retObj = {
     status: false,
     messages: []
   };
-  var query = { name: name };
-  employeCollection.remove(query, function(err, result) {
+  var query = {
+    name: name
+  };
+  employeCollection.remove(query, function (err, result) {
     if (err) {
       retObj.status = false;
       retObj.messages.push('error while deleting' + JSON.stringify(err));
@@ -183,15 +230,17 @@ Employees.prototype.deleteNameEmployees = function(name, callback) {
   });
 };
 
-Employees.prototype.updateEmp = function(employeData, callback) {
+Employees.prototype.updateEmp = function (employeData, callback) {
   var retObj = {
     status: false,
     messages: []
   };
-  employeCollection.findOneAndUpdate(
-    { _id: employeData._id },
-    { $set: employeData },
-    function(err, result) {
+  employeCollection.findOneAndUpdate({
+      _id: employeData._id
+    }, {
+      $set: employeData
+    },
+    function (err, result) {
       if (err) {
         retObj.status = false;
         retObj.messages.push('error in updating' + JSON.stringify(err));
@@ -206,12 +255,14 @@ Employees.prototype.updateEmp = function(employeData, callback) {
   );
 };
 
-Employees.prototype.findOneEmployees = function(query, callback) {
+Employees.prototype.findOneEmployees = function (query, callback) {
   var retObj = {
     status: false,
     messages: []
   };
-  employeCollection.find({ name: query.name }, function(err, employees) {
+  employeCollection.find({
+    name: query.name
+  }, function (err, employees) {
     retObj.status = true;
     retObj.messages.push('Success');
     retObj.employees = employees;
@@ -219,20 +270,23 @@ Employees.prototype.findOneEmployees = function(query, callback) {
   });
 };
 
-Employees.prototype.findEmployees = function(req, callback) {
+Employees.prototype.findEmployees = function (req, callback) {
   var retObj = {
     status: false,
     messages: []
   };
   var query = {};
   if (req.name != null) {
-    query.name = { $regex: req.name, $options: 'i' };
+    query.name = {
+      $regex: req.name,
+      $options: 'i'
+    };
   }
   if (req.age != null) {
     query.age = req.age;
   }
   console.log(query);
-  employeCollection.find(query).exec(function(err, employees) {
+  employeCollection.find(query).exec(function (err, employees) {
     retObj.status = true;
     retObj.messages.push('Success');
     retObj.employees = employees;
@@ -240,7 +294,7 @@ Employees.prototype.findEmployees = function(req, callback) {
   });
 };
 
-Employees.prototype.sortEmployees = function(age, callback) {
+Employees.prototype.sortEmployees = function (age, callback) {
   var retObj = {
     status: false,
     messages: []
@@ -249,8 +303,10 @@ Employees.prototype.sortEmployees = function(age, callback) {
   console.log(query);
   employeCollection
     .find(query)
-    .sort({ age: -1 })
-    .exec(function(err, employees) {
+    .sort({
+      age: -1
+    })
+    .exec(function (err, employees) {
       retObj.status = true;
       retObj.messages.push('Success');
       retObj.employees = employees;

@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col">
                 <div class="form-card block form-card-hiden" style="width: 35rem;margin: 0px 20px 20px 0px;padding: 15px;">
-                    <h3 style="text-align: center; color: blue;">
-                        <u>Employees Formfvfbfd</u>
+                    <h3 style="text-align: center; color: rgb(0, 0, 0);">
+                        <u>Employees Form</u>
                     </h3>
                     <form class="needs-validation" name="empRegform" ng-submit="EmpFormSubmit()">
                         <!-- <div class="avatar-upload">
@@ -54,7 +54,8 @@
                             </label>
                             <div class="col-sm-10">
                                 <input class="form-control form-control-sm in-style" id="inputDob" type="date" ng-model="employeeData.dob"
-                                    ng-bind="calculateAge(employeeData.dob)" placeholder="Enter Date of B..." required>
+                                    ng-change="calculateAge(employeeData.dob)" placeholder="Enter Date of B..."
+                                    required>
                             </div>
                         </div>
                         <div class="form-row form-box-style">
@@ -124,5 +125,120 @@
             </div>
         </div>
     </div>
+</div>
+<<<<<<< HEAD
+>>>>>>> commited
+=======
+
+
+
+
+<div ng-controller="StudentsListController">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="form-card block form-card-hiden" style="width: 35rem;margin: 0px 20px 20px 0px;padding: 15px;">
+                    <h3 style="text-align: center; color: rgb(0, 0, 0);">
+                        <u>Students Form</u>
+                    </h3>
+                    <form>
+                        <hr>
+                        <div class="form-row form-box-style">
+                            <label for="inputName" class="col-sm-2 col-form-label">
+                                Name:
+                            </label>
+                            <div class="col-sm-10">
+                                <input class="form-control form-control-sm in-style" id="inputName" type="text"
+                                    ng-model="studentData.name" placeholder="Enter Name" required>
+                            </div>
+                        </div>
+                        <div class="form-row form-box-style">
+                            <label for="inputDep" class="col-sm-2 col-form-label">DEP</label>
+                            <div class="col-sm-10">
+                                <select id="inputDep" ng-model="studentData.dep" class="form-control in-style form-control-sm"
+                                    placeholder="Choose Dep ...">
+                                    <option ng-repeat="department in departments" value="{{department._id}}">{{department.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row form-box-style">
+                            <label for="inputId" class="col-sm-2 col-form-label">
+                                Id:
+                            </label>
+                            <div class="col-sm-10">
+                                <input class="form-control form-control-sm in-style" id="inputId" type="text" ng-model="studentData.id"
+                                    placeholder="Enter ID" required>
+                            </div>
+                        </div>
+                        <div class="form-row form-box-style">
+                            <label for="inputDob" class="col-sm-2 col-form-label">
+                                Date.O.B:
+                            </label>
+                            <div class="col-sm-10">
+                                <input class="form-control form-control-sm in-style" id="inputDob" type="date" ng-model="studentData.dob"
+                                    ng-change="calculateAge(studentData.dob)" placeholder="Enter Date of B..." required>
+                            </div>
+                        </div>
+                        <div class="form-row form-box-style">
+                            <label for="inputDoj" class="col-sm-2 col-form-label">
+                                Date.O.J:
+                            </label>
+                            <div class="col-sm-10">
+                                <input class="form-control form-control-sm in-style" id="inputDoj" type="date" ng-model="studentData.doj"
+                                    placeholder="Enter Date of J..." required>
+                            </div>
+                        </div>
+                        <div class="form-group nav-item nav-link">
+                            <label for="">
+                                Gender:
+                            </label>
+                            <div class="col-sm-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" ng-model="studentData.gender" name="gridRadios"
+                                        value="male" checked>
+                                    <label class="form-check-label" for="gridRadios1">
+                                        Male
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" ng-model="studentData.gender" type="radio" name="gridRadios"
+                                        value="female">
+                                    <label class="form-check-label" for="gridRadios2">
+                                        FeMale
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row form-box-style">
+                            <label for="inputMobileNo" class="col-sm-2 col-form-label">
+                                Mobile No:
+                            </label>
+                            <div class="col-sm-10">
+                                <input class="form-control form-control-sm in-style" id="inputMobileNo" type="number"
+                                    ng-model="studentData.mobileno" placeholder="Enter MobileNo" required>
+                            </div>
+                        </div>
+                        <div class="form-row form-box-style">
+                            <label for="inputAge" class="col-sm-2 col-form-label">Age: </label>
+                            <div class="col-sm-10">
+                                <input class="form-control form-control-sm in-style" id="inputAge" type="number"
+                                    ng-model="studentData.age" placeholder="Enter Age" required>
+                            </div>
+                        </div>
+                </div>
+
+                <hr style="margin-bottom: 0rem;">
+                <div class="btn-group btn-group-lg" style="width: 100%;">
+                    <button style="text-align: center;" class="btn btn-outline-success btn-style" type="submit" id="submit"
+                        value="Add" ng-click="StudentFormSubmit()">Add</button>
+                    <button style="text-align: center;" class="btn btn-outline-danger btn-style" type="reset" ng-click="resetForm()"
+                        value="Reset">Reset</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<ui-view></ui-view>
 </div>
 >>>>>>> commited
