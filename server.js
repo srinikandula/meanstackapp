@@ -21,9 +21,12 @@ app.use(
 app.use(cookieParser());
 app.use('/v1/login', logIn.OpenRouter);
 
-app.use(authMiddleware);
 
+app.use(authMiddleware);
 app.use('/v1/employees', Employee.AuthRouter);
+app.use('/v1/students', Student.AuthRouter);
+app.use('/v1/departments', Department.AuthRouter);
+
 
 var server = app.listen(app.get('port'), function() {
   console.log('Listening on port ' + server.address().port);
