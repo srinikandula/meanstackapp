@@ -1,5 +1,7 @@
 var employeCollection = require('../models/schemas').employeCollection;
 var departmentApi = require('./departmentApi');
+var _ = require('underscore');
+
 
 var Employees = function() {};
 
@@ -39,8 +41,8 @@ Employees.prototype.getEmployees = function(req, callback) {
     departmentApi.getDepatNames(deptIds, function(deptNames) {
       for (employee in employees) {
         for (dept in deptNames) {
-          if (dept._id === emp.dep) {
-            emp.deptName = dept.dep;
+          if (dept._id === employee.dep) {
+              employee.deptName = dept.dep;
           }
         }
       }

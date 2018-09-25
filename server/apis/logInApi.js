@@ -14,7 +14,6 @@ LogIns.prototype.login = function(req,callback){
       messages:[]
     };
     var logInData = req.body;
-    console.log("log in data....",logInData);
     AccountsCollection.findOne({userName:logInData.userName},function(err,user){
         if(err || !user){
             retObj.status = false;

@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ui.router']);
+var app = angular.module('myApp', ['ui.router','ngCookies']);
 
 app.factory('Service',['$http', function ($http) {
     return {
@@ -13,11 +13,7 @@ app.factory('Service',['$http', function ($http) {
 }]);
 
 
-app.config([
-  '$stateProvider',
-  '$locationProvider',
-  '$urlRouterProvider',
-  function($stateProvider, $locationProvider, $urlRouterProvider) {
+app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider',function($stateProvider, $locationProvider, $urlRouterProvider) {
     $stateProvider
       .state({
         name: 'home',
@@ -48,8 +44,36 @@ app.config([
         url: '/editemp',
         templateUrl: 'views/editemp.html'
       });
-  }
-]);
+    // $urlRouterProvider.otherwise('/login');
+}]);
+
+app.config(['$httpProvider', function ( $httpProvider) {
+
+    // Interceptor for redirecting to login page if not logged in
+    $httpProvider.interceptors.push(['$q', '$location', '$rootScope', '$cookies', function ($q, $location, $rootScope, $cookies) {
+        return {
+            'request': function (config) {
+                $rootScope.reqloading = true;
+                return config;
+            },
+            'response': function (config) {
+                $rootScope.reqloading = false;
+                return config;
+            },
+            'responseError': function (error) {
+                let status = error.status;
+                console.log('status ' + error.status);
+                if ([400, 401, 402, 403].indexOf(status) > -1) {
+                    $cookies.remove('token');
+                    $location.path('/login');
+                    return $q.reject(error);
+                }
+            }
+        };
+    }]);
+}]);
+
+
 
 app.controller('StudentController', function($scope, $http) {
   $scope.students = [];
@@ -178,17 +202,23 @@ app.controller('EmployeesListController', function(
   $scope.employeeData.doj = new Date();
 });
 
-app.controller("myCtrl",['$scope','Service','$state',function($scope,Service,$state){
+app.controller("myCtrl",['$scope','Service','$state','$cookies',function($scope,Service,$state,$cookies){
     $scope.loginParams = {};
     $scope.isLoggedIn = false;
     $scope.login = function(){
         Service.login($scope.loginParams,function(successCallback){
             if(successCallback.data.status){
                 $scope.isLoggedIn = true;
-                $state.go('home');
+                $cookies.put('token', successCallback.data.token);
+                $state.go('employees');
             }
         },function(errorCallback){
 
         });
+    };
+    $scope.logOut = function(){
+        console.log("log out function....");
+        $cookies.remove('token');
+        $state.go('login');
     }
 }]);
