@@ -1,8 +1,8 @@
 var employeCollection = require('../models/schemas').employeCollection;
 var departmentCollection = require('../models/schemas').departmentCollection;
 var departmentApi = require('./departmentApi');
-var async = require("async");
-var _ = require("underscore");
+var async = require('async');
+var _ = require('underscore');
 
 var Employees = function () {};
 
@@ -14,7 +14,9 @@ Employees.prototype.addEmploye = function (employeeData, req, callback) {
   console.log('emp', employeeData);
   console.log('data ' + employeeData);
   var employeDoc = new employeCollection({
-    name: employeeData.name,
+    username: employeeData.username,
+    password: employeeData.password,
+    co_password: employeeData.co_password,
     dep: employeeData.dep,
     id: employeeData.id,
     dob: employeeData.dob,
@@ -36,31 +38,37 @@ Employees.prototype.getEmployees = function (req, callback) {
     messages: []
   };
   employeCollection.find({}).exec(function (err, employees) {
-    async.each(employees, function (employee, asyncCallback) {
-      departmentCollection.findOne({
-        _id: employee.dep
-      }, function (err, dept) {
+    async.each(
+      employees,
+      function (employee, asyncCallback) {
+        departmentCollection.findOne({
+            _id: employee.dep
+          },
+          function (err, dept) {
+            if (err) {
+              asyncCallback(true);
+            } else {
+              employee.dep = dept.dep;
+              asyncCallback(false);
+            }
+            // console.log(employee.dep);
+          }
+        );
+      },
+      function (err) {
         if (err) {
-          asyncCallback(true);
+          retObj.status = false;
+          retObj.messages.push('error while finding' + JSON.stringify(err));
+          callback(retObj);
         } else {
-          employee.dep = dept.dep;
-          asyncCallback(false);
+          retObj.status = true;
+          retObj.messages.push('successfully');
+          retObj.data = employees;
+          // console.log('emp', employees);
+          callback(retObj);
         }
-        // console.log(employee.dep);
-      });
-    }, function (err) {
-      if (err) {
-        retObj.status = false;
-        retObj.messages.push('error while finding' + JSON.stringify(err));
-        callback(retObj);
-      } else {
-        retObj.status = true;
-        retObj.messages.push('successfully');
-        retObj.data = employees;
-        // console.log('emp', employees);
-        callback(retObj);
       }
-    });
+    );
   });
 };
 
@@ -165,14 +173,63 @@ Employees.prototype.findOneEmployees = function (query, callback) {
     messages: []
   };
   employeCollection.find({
-    name: query.name
-  }, function (err, employees) {
-    retObj.status = true;
-    retObj.messages.push('Success');
-    retObj.employees = employees;
-    callback(retObj);
+      name: query.name
+    },
+    function (err, employees) {
+      retObj.status = true;
+      retObj.messages.push('Success');
+      retObj.employees = employees;
+      callback(retObj);
+    }
+  );
+};
+
+Employees.prototype.findCheckName = function (req, callback) {
+  var retObj = {
+    status: false,
+    messages: []
+  };
+  console.log('hitAPI', req.body);
+  // console.log('hitAPI');
+  var query = {
+    username: req.body.username,
+    // id: req.body.userId
+  };
+  console.log('flnvfnb', query);
+  employeCollection.find(query, function (err, user) {
+    if (err) {
+      console.log('Username exist');
+      // console.log('Signup error');
+      // return done(err);
+      callback(retObj);
+    }
+    console.log('data', user);
+    if (user.length != 0) {
+      if (user[0].username) {
+        console.log('Username already exists, username: ' + user);
+        retObj.status = true;
+        callback(retObj);
+      }
+    } else {
+      retObj.status = false;
+      retObj.messages.push("Username not exists");
+      console.log('data1', user);
+      callback(retObj);
+    }
   });
 };
+
+Employees.prototype.loginUser = function (req, callback) {
+  var retObj = {
+    status: false,
+    messages: []
+  }
+  var query = {
+    username: req.body.username,
+    password: req.body.password
+  };
+  employeCollection.find(query, function (err, user) {})
+}
 
 Employees.prototype.findEmployees = function (req, callback) {
   var retObj = {

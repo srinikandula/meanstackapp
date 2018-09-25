@@ -70,57 +70,61 @@
 
                 <div class="add-card"></div>
                 <div ng-repeat="employee in employees | filter: searchtxt">
-                    <div class="card block card-style" style="width: 12rem;">
-                        <div>
-                            <span class="emp-win">
-                                <span>
-                                    {{$index + 1}}
+                    <div id="card-conexp">
+                        <div class="card block card-style card-exp card-box card-foo" style="width: 12rem;">
+                            <div>
+                                <span class="emp-win">
+                                    <span>
+                                        {{$index + 1}}
+                                    </span>
                                 </span>
-                            </span>
-                            <span class="butn-success">
-                                <i class="fa fa-pencil-square-o e-style" aria-hidden="true" ng-click="empEdit(employee._id)"
-                                    ui-sref="editEmp"></i>
-                            </span>
-                            <span class="butn-danger">
-                                <i class="fa fa-window-close-o c-style" aria-hidden="true" ng-click="empRemove(employee._id)"></i>
-                            </span>
-                        </div>
-                        <img class="card-img-top" src="../img/img_avatar1.png" alt="Card image cap">
-                        <h5 class="card-title">{{employee.name | uppercase}}</h5>
-                        <hr style="margin: 0px !important;">
-                        <div class="expand">
-                            <label for="inputId" class="col-form-label label-p">Name<span class="span-style">:
-                                </span> </label>
-                            <span class="card-text">{{employee.name}}</span><br>
-                            <label for="inputId" class="col-form-label label-p">DEP <span class="span-style">:
-                                </span> </label>
-                            <span class="card-text">{{employee.dep}}</span><br>
-                            <label for="inputId" class="col-form-label label-p">Id<span class="span-style">: </span>
-                            </label>
-                            <span class="card-text">{{employee.id}}</span><br>
-                        </div>
-                        <div class="expandable">
-                            <label for="inputId" class="col-form-label label-p">Date.O.B<span class="span-style">:
-                                </span></label>
-                            <span class="card-text">{{employee.dob | date : "dd.MM.y"}}</span><br>
-                            <label for="inputId" class="col-form-label label-p">Date.O.J<span class="span-style">:
-                                </span></label>
-                            <span class="card-text">{{employee.doj | date : "dd.MM.y"}}</span><br>
-                            <label for="inputId" class="col-form-label label-p">Gander<span class="span-style">:
-                                </span></label>
-                            <span class="card-text">{{employee.gender}}</span><br>
-                            <label for="inputId" class="col-form-label label-p">MobileNo<span class="span-style">:
-                                </span></label>
-                            <span class="card-text">{{employee.mobileno}}</span><br>
-                            <label for="inputId" class="col-form-label label-p">Age<span class="span-style">:
-                                </span></label>
-                            <span class="card-text">{{employee.age}}</span><br>
-                            <label for="inputId" class="col-form-label label-p">Salary<span class="span-style">:
-                                </span></label>
-                            <span class="card-text">{{employee.salary}}</span>
-                        </div>
-                        <div style="text-align: right;">
-                            <i class="fa fa-angle-double-down" style="color:#17a2b8;" aria-hidden="true"></i>
+                                <span class="butn-success">
+                                    <i class="fa fa-pencil-square-o e-style" aria-hidden="true" ng-click="empEdit(employee._id)"
+                                        ui-sref="editEmp"></i>
+                                </span>
+                                <span class="butn-danger">
+                                    <i class="fa fa-window-close-o c-style" aria-hidden="true" ng-click="empRemove(employee._id)"></i>
+                                </span>
+                            </div>
+                            <div class="profile-style">
+                                <img class="card-img-top" src="../img/img_avatar1.png" alt="Card image cap">
+                                <span class="overlay">{{employee.username | uppercase}}</span>
+                            </div>
+                            <hr style="margin: 0px !important;">
+                            <div class="expand">
+                                <label for="inputId" class="col-form-label label-p">Name<span class="span-style">:
+                                    </span> </label>
+                                <span class="card-text">{{employee.username}}</span><br>
+                                <label for="inputId" class="col-form-label label-p">DEP <span class="span-style">:
+                                    </span> </label>
+                                <span class="card-text">{{employee.dep}}</span><br>
+                                <label for="inputId" class="col-form-label label-p">Id<span class="span-style">: </span>
+                                </label>
+                                <span class="card-text">{{employee.id}}</span><br>
+                            </div>
+                            <div class="expandable">
+                                <label for="inputId" class="col-form-label label-p">Date.O.B<span class="span-style">:
+                                    </span></label>
+                                <span class="card-text">{{employee.dob | date : "dd.MM.y"}}</span><br>
+                                <label for="inputId" class="col-form-label label-p">Date.O.J<span class="span-style">:
+                                    </span></label>
+                                <span class="card-text">{{employee.doj | date : "dd.MM.y"}}</span><br>
+                                <label for="inputId" class="col-form-label label-p">Gander<span class="span-style">:
+                                    </span></label>
+                                <span class="card-text">{{employee.gender}}</span><br>
+                                <label for="inputId" class="col-form-label label-p">MobileNo<span class="span-style">:
+                                    </span></label>
+                                <span class="card-text">{{employee.mobileno}}</span><br>
+                                <label for="inputId" class="col-form-label label-p">Age<span class="span-style">:
+                                    </span></label>
+                                <span class="card-text">{{employee.age}}</span><br>
+                                <label for="inputId" class="col-form-label label-p">Salary<span class="span-style">:
+                                    </span></label>
+                                <span class="card-text">{{employee.salary}}</span>
+                            </div>
+                            <div style="text-align: right;">
+                                <i class="fa fa-angle-double-down expand" style="color:#17a2b8;" aria-hidden="true"></i>
+                            </div>
                         </div>
                     </div>
                 </div>

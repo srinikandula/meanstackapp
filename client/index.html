@@ -20,6 +20,8 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Compiled and minified CSS -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
@@ -28,7 +30,7 @@
 <body>
     <!-- fixed-top -->
     <div ng-app="myApp">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom" style="border-bottom: 1px solid;">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
             <a class="navbar-brand" href="#">EASY GADDI</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,22 +40,18 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" ui-sref="home">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link nav-box curmudgeon" ui-sref="home">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref="employees">Employees</a>
+                        <a class="nav-link nav-box curmudgeon" ui-sref="employees">Employees</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref="students">Students</a>
+                        <a class="nav-link nav-box curmudgeon" ui-sref="students">Students</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <button class="nav-link" data-target="#navbarWEX">Filters ....</button>
-                    </li> -->
                 </ul>
-                <!-- <form class="form-inline my-2 my-lg-0">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form> -->
-                <span class="ml-auto navbar-text">Text</span>
+                <span class="ml-auto">
+                    <a class="nav-link nav-box curmudgeon" ui-sref="login">LogIn</a>
+                </span>
             </div>
         </nav>
         <ui-view></ui-view>

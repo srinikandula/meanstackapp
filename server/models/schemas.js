@@ -4,6 +4,18 @@ var config = require('./../config/config');
 console.log('Connecting to mongo using url - ' + config.mongo.url);
 mongoose.connect(config.mongo.url);
 
+// var userSchema = new mongoose.Schema({
+//   username: {
+//     type: String,
+//     unique: true
+//   },
+//   password: {
+//     type: String
+//   },
+//   firstname: String,
+//   lastname: String
+// })
+
 var studentSchema = new mongoose.Schema({
   name: String,
   age: Number,
@@ -12,8 +24,10 @@ var studentSchema = new mongoose.Schema({
 });
 
 var employeSchema = new mongoose.Schema({
-  name: String,
+  // name: String,
+  username: String,
   password: String,
+  co_password: String,
   // confirmpassword: String,
   dep: String,
   id: String,
@@ -31,6 +45,7 @@ var depSchema = new mongoose.Schema({
 });
 
 module.exports = {
+  // userCollection: mongoose.model('user', userSchema, 'user'),
   studentCollection: mongoose.model('student', studentSchema, 'student'),
   employeCollection: mongoose.model('employe', employeSchema, 'employe'),
   departmentCollection: mongoose.model('department', depSchema, 'department')

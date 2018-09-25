@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ui.router']);
+var app = angular.module('myApp', ['ui.router', 'UserValidation']);
 
 app.config([
   '$stateProvider',
@@ -6,6 +6,11 @@ app.config([
   '$urlRouterProvider',
   function ($stateProvider, $locationProvider, $urlRouterProvider) {
     $stateProvider
+      .state({
+        name: 'login',
+        url: '/login',
+        templateUrl: 'views/login_view.html'
+      })
       .state({
         name: 'home',
         url: '/home',
@@ -34,6 +39,8 @@ app.config([
   }
 ]);
 
+
+
 app.controller('StudentController', function ($scope, $http) {
   $scope.students = [];
   $http({
@@ -59,9 +66,9 @@ app.controller('EmployeesListController', function (
 ) {
   $scope.employees = [];
   $scope.employeeData = {
-    name: '',
-    // password: '',
-    // confirmpassword: '',
+    username: '',
+    password: '',
+    co_password: '',
     dep: '',
     id: '',
     dob: '',
@@ -147,6 +154,7 @@ app.controller('EmployeesListController', function (
     } else {
       $http.post('/v1/employees/add', params);
       console.log('sjghlk', $scope.employeeData);
+      console.log('data', params);
     }
   };
   $scope.resetForm = function () {
@@ -162,4 +170,56 @@ app.controller('EmployeesListController', function (
   };
 
   $scope.employeeData.doj = new Date();
+
+  $scope.checkName = function () {
+    // alert('hiii');
+    var params = {
+      username: $scope.employeeData.username,
+      // userId: $scope.employeeData.id
+    };
+    $http.post('v1/employees/findname', params).then(function (response) {
+      if (response.data.status) {
+        $scope.Color = "red";
+        $scope.Message = "Name is NOT available";
+        console.log(response);
+
+      } else {
+        $scope.Color = "green";
+        $scope.Message = "Name is available";
+        // console.log("error while getting the data");
+      }
+    }, function (err) {
+
+    });
+  };
+
+  $scope.login = function () {
+    alert('login');
+    var params = {
+      username: $scope.employeeData.username,
+      password: $scope.employeeData.password
+    };
+    $http.post('v1/employees/login', params).then(function (response) {
+      if (login($scope.employeeData.username, $scope.employeeData.password)) {
+        $rootScope.username = $scope.employeeData.username;
+        $scope.error = '';
+        $scope.employeeData.username = '';
+        $state.transitionTo('home');
+      } else {
+        $scope.error = "Incorrect username/password !";
+      }
+    });
+  };
 });
+
+angular.module('UserValidation', []).directive('validPasswordC', function () {
+  return {
+    require: 'ngModel',
+    link: function (scope, elm, attrs, ctrl) {
+      ctrl.$parsers.unshift(function (viewValue, $scope) {
+        var noMatch = viewValue != scope.empData.password.$viewValue;
+        ctrl.$setValidity('noMatch', !noMatch)
+      })
+    }
+  }
+})

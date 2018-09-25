@@ -2,11 +2,11 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="form-card block form-card-hiden" style="width: 35rem;margin: 0px 20px 20px 0px;padding: 15px;">
+                <div class="form-card block form-card-hiden" style="width: 35rem;margin: 10px 20px 20px 0px;padding: 15px;">
                     <h3 style="text-align: center; color: blue;">
-                        <u>Employees Formfvfbfd</u>
+                        <u>Employees Form</u>
                     </h3>
-                    <form class="needs-validation" name="empRegform" ng-submit="EmpFormSubmit()">
+                    <form class="needs-validation" name="empData" id="employeeData" ng-submit="EmpFormSubmit()">
                         <!-- <div class="avatar-upload">
                             <div class="avatar-edit">
                                 <input class="pro-style" name="EmpImg" type='file' id="imageUpload" ng-model="employeeData.image"
@@ -19,16 +19,51 @@
                         </div> -->
                         <!-- <hr> -->
                         <div class="form-row form-box-style">
-                            <label for="inputName" class="col-sm-2 col-form-label">
-                                Name:
+                            <label for="inputUserName" class="col-sm-2 col-form-label">
+                                UserName:
                             </label>
                             <div class="col-sm-10">
-                                <input class="form-control form-control-sm in-style" id="inputName" type="text"
-                                    ng-model="employeeData.name" placeholder="Enter Name" required>
+                                <input class="form-control form-control-sm in-style" id="inputUserName" type="text"
+                                    ng-model="employeeData.username" ng-keyup='checkName(employeeData.username)'
+                                    placeholder="Enter User Name..." required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <small ng-bind="Message" ng-style="{color:Color}"></small>
                             </div>
                         </div>
                         <div class="form-row form-box-style">
-                            <label for="inputDep" class="col-sm-2 col-form-label">DEP</label>
+                            <label for="inputPassword" class="col-sm-2 col-form-label">
+                                Password:
+                            </label>
+                            <div class="col-sm-10" ng-class="{'has-error':empData.password.$invalid && !empData.password.$pristine}">
+                                <input class="form-control form-control-sm in-style" id="inputPassword" type="password"
+                                    name="password" ng-model="employeeData.password" ng-minlength="6" ng-maxlength="12"
+                                    ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" placeholder="Enter Password..."
+                                    required>
+                                <p><small ng-show="empData.password.$error.required" style="color:red;" class="error"></small></p>
+                                <p><small ng-show="empData.password.$error.minlength" style="color: red;" class="error">
+                                        Passwords must be between 8 and 20 characters.</small></p>
+                                <p><small ng-show="empData.password.$error.pattern" style="color: red;" class="error">
+                                        Must contain one lower &amp; uppercase letter, and one non-alpha character (a
+                                        number or a symbol.)</small></p>
+                            </div>
+                        </div>
+                        <div class="form-row form-box-style">
+                            <label for="inputCo-Password" class="col-sm-2 col-form-label">
+                                Co-Password:
+                            </label>
+                            <div class="col-sm-10" ng-class="{'has-error':empData.co_password.$invalid && !empData.co_password.$pristine}">
+                                <input class="form-control form-control-sm in-style" id="inputCo-Password" type="password"
+                                    name="co_password" ng-model="employeeData.co_password" valid-password-c="employeeData.password"
+                                    placeholder="Enter Co-Password..." required>
+                                <p><small ng-show="empData.co_password.$error.noMatch" style="color:red" class="error">Passwords
+                                        do not match.</small></p>
+                                <p><small ng-show="empData.co_password.$error.required" class="error"></small></p>
+                            </div>
+                        </div>
+                        <div class="form-row form-box-style">
+                            <label for="inputDep" class="col-sm-2 col-form-label">DEP:</label>
                             <div class="col-sm-10">
                                 <select id="inputDep" ng-model="employeeData.dep" class="form-control in-style form-control-sm"
                                     placeholder="Choose Dep ...">
@@ -42,7 +77,7 @@
                             </label>
                             <div class="col-sm-10">
                                 <input class="form-control form-control-sm in-style" id="inputId" type="text" ng-model="employeeData.id"
-                                    placeholder="Enter ID" required>
+                                    ng-keyup='checkName(employeeData.id)' placeholder="Enter ID..." required>
                             </div>
                         </div>
                         <div class="form-row form-box-style">
@@ -51,7 +86,8 @@
                             </label>
                             <div class="col-sm-10">
                                 <input class="form-control form-control-sm in-style" id="inputDob" type="date" ng-model="employeeData.dob"
-                                    ng-bind="calculateAge(employeeData.dob)" placeholder="Enter Date of B..." required>
+                                    ng-change="calculateAge(employeeData.dob)" placeholder="Enter Date of B..."
+                                    required>
                             </div>
                         </div>
                         <div class="form-row form-box-style">
@@ -60,7 +96,7 @@
                             </label>
                             <div class="col-sm-10">
                                 <input class="form-control form-control-sm in-style" id="inputDoj" type="date" ng-model="employeeData.doj"
-                                    ng-bind="employeeData.doj" placeholder="Enter Date of J..." required>
+                                    ng-change="employeeData.doj" placeholder="Enter Date of J..." required>
                             </div>
                         </div>
                         <div class="form-row form-box-style">
@@ -112,7 +148,7 @@
                         <hr style="margin-bottom: 0rem;">
                         <div class="btn-group btn-group-lg" style="width: 100%;">
                             <button style="text-align: center;" class="btn btn-outline-success btn-style" type="submit"
-                                id="submit" value="Add">Add</button>
+                                id="submit" ng-disabled="!employeeData.$valid" value="Add">Add</button>
                             <button style="text-align: center;" class="btn btn-outline-danger btn-style" type="reset"
                                 ng-click="resetForm()" value="Reset">Reset</button>
                         </div>
