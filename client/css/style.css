@@ -1,5 +1,5 @@
 body {
-  background-color: #2575c5 !important;
+  background-color: #00ccff !important;
   background-image: url('');
 }
 
@@ -396,7 +396,7 @@ body {
   /* background-color: #17a2b8; */
   /* position: relative; */
   /* height: 300px; */
-  background-image: linear-gradient(#b81717, #176ab8);
+  background-image: linear-gradient(#ff0707, rgb(0, 255, 213));
   border-bottom-left-radius: 0% 0%;
   border-bottom-right-radius: 0% 0%;
 }
