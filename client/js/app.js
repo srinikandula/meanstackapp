@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ui.router']);
+var app = angular.module('myApp', ['ui.router', 'ngCookies']);
 
 app.factory('Service',['$http', function ($http) {
     return {
@@ -178,13 +178,15 @@ app.controller('EmployeesListController', function(
   $scope.employeeData.doj = new Date();
 });
 
-app.controller("myCtrl",['$scope','Service','$state',function($scope,Service,$state){
+app.controller("myCtrl",['$scope','Service','$state', '$cookies',function($scope,Service,$state, $cookies){
     $scope.loginParams = {};
     $scope.isLoggedIn = false;
     $scope.login = function(){
         Service.login($scope.loginParams,function(successCallback){
             if(successCallback.data.status){
                 $scope.isLoggedIn = true;
+                $cookies.put('token', successCallback.data.token);
+                console.log('successCallback.data  '+ successCallback.data);
                 $state.go('home');
             }
         },function(errorCallback){

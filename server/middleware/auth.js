@@ -8,7 +8,7 @@ function authMiddleware(req,res,next){
     var token = req.cookies.token || req.headers.token;
     console.log('token....',token);
     jwt.verify(token,config.jwt.secret,function (err, decoded) {
-        console.log("err........",err,"decoded.....",decoded);
+        console.log("decoded.....",decoded);
     });
 
 }
