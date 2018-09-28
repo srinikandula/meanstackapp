@@ -1,0 +1,166 @@
+<div ng-controller="TripesListController">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-card trip-card block form-card-hiden" style="margin: 10px 20px 20px 0px;padding: 15px;">
+                    <h3 style="text-align: center; color: #17a2b8;">
+                        <u>Trip Form</u>
+                    </h3>
+                    <!-- <form class="needs-validation" name="tripData" id="tripData"> -->
+                    <div>
+                        <div class="form-row form-box-style">
+                            <label for="inputVehicleNumber" class="col-sm-3 col-form-label">
+                                VehicleNumber:
+                            </label>
+                            <div class="col-sm-9">
+                                <input class="form-control form-control-sm in-style" id="inputVehicleNumber" type="text"
+                                    ng-model="tripData.vehicleNumber" placeholder="Enter Vehicle Number..." required>
+                            </div>
+                        </div>
+
+                        <div class="form-row form-box-style">
+                            <label for="inputDriverName" class="col-sm-3 col-form-label">
+                                DriverName:
+                            </label>
+                            <div class="col-sm-9">
+                                <input class="form-control form-control-sm in-style" id="inputDriverName" type="text"
+                                    ng-model="tripData.driverName" ng-keyup='checkdriverName(tripData.driverName)'
+                                    placeholder="Enter Driver Name..." required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <small ng-bind="Message" ng-style="{color:Color}"></small>
+                            </div>
+                        </div>
+
+                        <div class="form-row form-box-style">
+                            <label for="inputDriverName" class="col-sm-3 col-form-label">
+                                DriverNumber:
+                            </label>
+                            <div class="col-sm-9">
+                                <input class="form-control form-control-sm in-style" id="inputDriverNumber" type="number"
+                                    ng-model="tripData.driverNumber" placeholder="Enter Driver Number..." required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <small ng-bind="Message" ng-style="{color:Color}"></small>
+                            </div>
+                        </div>
+
+                        <div class="form-row form-box-style">
+                            <label for="inputFileUpload" class="col-sm-3 col-form-label">
+                                FileUpload:
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="file" class="custom-file-input form-control-sm" ng-model="tripData.fileUpload"
+                                    id="customFile" name="filename">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+
+                        <div class="form-row form-box-style">
+                            <label for="inputFrom" class="col-sm-3 col-form-label">
+                                From:
+                            </label>
+                            <div class="col-sm-9">
+                                <input class="form-control form-control-sm in-style" id="inputFrom" type="text"
+                                    ng-model="tripData.from" placeholder="Enter From..." required>
+                            </div>
+                        </div>
+
+                        <div class="form-row form-box-style">
+                            <div class="col">
+                                <div class="row">
+                                    <label for="inputTo" class="col-3 col-form-label">
+                                        To:
+                                    </label>
+                                    <div class="col-8" ng-repeat="choice in choices">
+                                        <div class="row">
+                                            <div class="col-11">
+                                                <input class="form-control form-control-sm in-style" id="inputTo" type="text"
+                                                    ng-model="choice.name" placeholder="Enter To..." required>
+                                            </div>
+                                            <div class="col-1">
+                                                <button class="btn btn-danger btn-sm" ng-click="removeNewChoice($index)">
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1">
+                                        <button type="button" class="btn btn-info btn-sm" ng-click="addNewChoice()">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row form-box-style">
+                            <label for="inputFreightAmount" class="col-sm-3 col-form-label">
+                                FreightAmount:
+                            </label>
+                            <div class="col-sm-9">
+                                <input class="form-control form-control-sm in-style" id="inputFreightAmount" type="text"
+                                    ng-model="tripData.freightAmount" placeholder="Enter FreightAmount..." required>
+                            </div>
+                        </div>
+                        <div class="form-row form-box-style">
+                            <label for="inputPaidAmount" class="col-sm-3 col-form-label">
+                                PaidAmount:
+                            </label>
+                            <div class="col-sm-9">
+                                <input class="form-control form-control-sm in-style" id="inputPaidAmount" type="text"
+                                    ng-model="tripData.paidAmount" placeholder="Enter PaidAmount..." required>
+                            </div>
+                        </div>
+
+                        <hr style="margin-bottom: 0rem;">
+                        <div class="btn-group btn-group-lg" style="width: 100%;">
+                            <button style="text-align: center;" class="btn btn-outline-success btn-style" type="submit"
+                                id="submit" value="addTrip" ng-click="TripFormSubmit()">Add Trip</button>
+                            <button style="text-align: center;" class="btn btn-outline-danger btn-style" type="reset"
+                                ng-click="resetForm()" value="Reset">Reset</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <table class="table table-hover  table-responsive">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>S.No</th>
+                            <th>vehicleNumber</th>
+                            <th>driverName</th>
+                            <th>driverNumber</th>
+                            <th>fileUpload</th>
+                            <th>from</th>
+                            <th>to</th>
+                            <th>freightAmount</th>
+                            <th>paidAmount</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="trip in tripes">
+                            <td scope="row">{{$index + 1}}</td>
+                            <td>{{trip.vehicleNumber}}</td>
+                            <td>{{trip.driverName}}</td>
+                            <td>{{trip.driverNumber}}</td>
+                            <td>{{trip.fileUpload}}</td>
+                            <td>{{trip.from}}</td>
+                            <td>{{trip.to}}</td>
+                            <td>{{trip.freightAmount}}</td>
+                            <td>{{trip.paidAmount}}</td>
+                            <td><button type="button" class="btn btn-info" ng-click="tripEdit(trip._id)">Edit</button></td>
+                            <td><button class="btn btn-danger" type="button" ng-click="tripRemove(trip._id)">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

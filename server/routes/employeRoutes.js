@@ -1,6 +1,7 @@
 var express = require('express');
 var AuthRouter = express.Router();
 var Employees = require('../apis/employeApi');
+// var Login = require('../apis/loginApi');
 
 AuthRouter.post('/add', function (req, res) {
   Employees.addEmploye(req.body, req, function (result) {
@@ -62,8 +63,14 @@ AuthRouter.get('/sort', function (req, res) {
   });
 });
 
+// AuthRouter.post('/login', function (req, res) {
+//   Login.loginUser(req, function (result) {
+//     res.json(result);
+//   });
+// });
+
 module.exports = {
-    AuthRouter: AuthRouter
+  AuthRouter: AuthRouter
 };
 
 // get all -- http://localhost:3000//v1/employees/getAll

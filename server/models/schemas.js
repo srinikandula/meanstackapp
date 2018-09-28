@@ -44,9 +44,23 @@ var depSchema = new mongoose.Schema({
   dep: String
 });
 
+var tripSchema = new mongoose.Schema({
+  vehicleNumber: String,
+  driverName: String,
+  driverNumber: Number,
+  fileUpload: String,
+  from: String,
+  to: [{
+    name: String
+  }],
+  freightAmount: Number,
+  paidAmount: Number
+})
+
 module.exports = {
   // userCollection: mongoose.model('user', userSchema, 'user'),
   studentCollection: mongoose.model('student', studentSchema, 'student'),
   employeCollection: mongoose.model('employe', employeSchema, 'employe'),
-  departmentCollection: mongoose.model('department', depSchema, 'department')
+  departmentCollection: mongoose.model('department', depSchema, 'department'),
+  tripCollection: mongoose.model('trip', tripSchema, 'trip'),
 };

@@ -199,8 +199,6 @@ Employees.prototype.findCheckName = function (req, callback) {
   employeCollection.find(query, function (err, user) {
     if (err) {
       console.log('Username exist');
-      // console.log('Signup error');
-      // return done(err);
       callback(retObj);
     }
     console.log('data', user);
@@ -218,18 +216,6 @@ Employees.prototype.findCheckName = function (req, callback) {
     }
   });
 };
-
-Employees.prototype.loginUser = function (req, callback) {
-  var retObj = {
-    status: false,
-    messages: []
-  }
-  var query = {
-    username: req.body.username,
-    password: req.body.password
-  };
-  employeCollection.find(query, function (err, user) {})
-}
 
 Employees.prototype.findEmployees = function (req, callback) {
   var retObj = {

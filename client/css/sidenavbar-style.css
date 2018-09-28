@@ -1,0 +1,8 @@
+.slide-ul-style {
+    list-style: none;
+    /* margin-left: -40px !important; */
+}
+
+#sticky-sidebar {
+    min-height: 100%;
+}

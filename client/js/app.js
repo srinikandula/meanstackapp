@@ -1,4 +1,16 @@
-var app = angular.module('myApp', ['ui.router', 'UserValidation']);
+var app = angular.module('myApp', ['ui.router', 'UserValidation', 'ngCookies']);
+
+app.factory('Service', ['$http', function ($http) {
+  return {
+    login: function (loginData, success, error) {
+      $http({
+        url: '/v1/login/login',
+        method: "POST",
+        data: loginData
+      }).then(success, error);
+    }
+  };
+}]);
 
 app.config([
   '$stateProvider',
@@ -7,14 +19,14 @@ app.config([
   function ($stateProvider, $locationProvider, $urlRouterProvider) {
     $stateProvider
       .state({
-        name: 'login',
-        url: '/login',
-        templateUrl: 'views/login_view.html'
-      })
-      .state({
         name: 'home',
         url: '/home',
         templateUrl: 'views/home.html'
+      })
+      .state({
+        name: 'login',
+        url: '/login',
+        templateUrl: 'views/login_view.html'
       })
       .state({
         name: 'editEmp',
@@ -35,11 +47,15 @@ app.config([
         name: 'editemp',
         url: '/editemp',
         templateUrl: 'views/editemp.html'
-      });
+      })
+      .state({
+        name: 'tripes',
+        url: '/tripes',
+        templateUrl: 'views/trip_view.html'
+      })
+    $urlRouterProvider.otherwise('/login');
   }
 ]);
-
-
 
 app.controller('StudentController', function ($scope, $http) {
   $scope.students = [];
@@ -157,6 +173,7 @@ app.controller('EmployeesListController', function (
       console.log('data', params);
     }
   };
+
   $scope.resetForm = function () {
     $scope.employeeData = angular.copy($scope.employeeData);
   };
@@ -192,24 +209,6 @@ app.controller('EmployeesListController', function (
 
     });
   };
-
-  $scope.login = function () {
-    alert('login');
-    var params = {
-      username: $scope.employeeData.username,
-      password: $scope.employeeData.password
-    };
-    $http.post('v1/employees/login', params).then(function (response) {
-      if (login($scope.employeeData.username, $scope.employeeData.password)) {
-        $rootScope.username = $scope.employeeData.username;
-        $scope.error = '';
-        $scope.employeeData.username = '';
-        $state.transitionTo('home');
-      } else {
-        $scope.error = "Incorrect username/password !";
-      }
-    });
-  };
 });
 
 angular.module('UserValidation', []).directive('validPasswordC', function () {
@@ -218,8 +217,112 @@ angular.module('UserValidation', []).directive('validPasswordC', function () {
     link: function (scope, elm, attrs, ctrl) {
       ctrl.$parsers.unshift(function (viewValue, $scope) {
         var noMatch = viewValue != scope.empData.password.$viewValue;
-        ctrl.$setValidity('noMatch', !noMatch)
+        ctrl.$setValidity('noMatch', !noMatch);
+      });
+    }
+  };
+});
+
+app.controller("EmployeesLoginController", ['$scope', 'Service', '$state', '$cookies', function ($scope, Service, $state, $cookies) {
+  $scope.logInData = {};
+  $scope.isLoggedIn = false;
+  $scope.login = function () {
+    // alert('login');
+    Service.login($scope.logInData, function (successCallback) {
+      if (successCallback.data.status) {
+        $scope.isLoggedIn = true;
+        $cookies.put('token', successCallback.data.token);
+        console.log('successCallback.data  ' + successCallback.data);
+        $state.go('home');
+      }
+    }, function (errorCallback) {
+
+    });
+  };
+}]);
+
+/*--------- Trip --------*/
+
+app.controller("TripesListController", function (
+  $scope,
+  $http,
+  $state,
+  $stateParams
+) {
+  $scope.tripes = [];
+  $scope.choices = ['']
+  $scope.tripData = {
+    vehicleNumber: '',
+    driverName: '',
+    driverNumber: '',
+    fileUpload: '',
+    from: '',
+    to: [{
+      name: ''
+    }],
+    freightAmount: '',
+    paidAmount: ''
+  };
+
+  $scope.addNewChoice = function () {
+    // $scope.choices.push({
+    //   tripData.to.name: ''
+    // });
+    $scope.tripData.to.push({
+      name: ''
+    })
+  };
+
+  $scope.removeNewChoice = function (index) {
+    $scope.choices.splice(index, 1);
+  };
+
+
+  $scope.TripFormSubmit = function () {
+    var params = $scope.tripData;
+    if (params._id) {
+      console.log('id', params._id);
+      $http.put('v1/tripes/updateTrip', params).then(function (response) {
+        console.log(response);
+      });
+    } else {
+      $http.post('/v1/tripes/addTrip', params);
+      console.log('sjghlk', $scope.tripeData);
+      console.log('data', params);
+    }
+  };
+
+  $http({
+    url: '/v1/tripes/getAllTripes',
+    method: 'GET'
+  }).then(
+    function (response) {
+      $scope.tripes = response.data.tripes;
+      console.log('got tripes 245 ' + $scope.tripes);
+    },
+    function (error) {
+      console.log('error getting tripes list');
+    }
+  );
+
+  $scope.tripEdit = function (_id) {
+    if (_id) {
+      $http.get('v1/tripes/getOne/' + _id).then(function (success) {
+        if (success.data.status) {
+          $scope.tripData = success.data.data;
+        }
+      }, function (error) {
+        console.log("error while getting the data");
       })
     }
-  }
-})
+    // console.log(_id);
+  };
+
+  $scope.tripRemove = function (_id) {
+
+    console.log(_id);
+    $http.delete('/v1/tripes/removeTrip/' + _id).then(function (response) {
+      console.log(response);
+    });
+  };
+});

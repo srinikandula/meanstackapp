@@ -1,6 +1,18 @@
 <div ng-controller="EmployeesListController">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
+            <!-- <nav class="navbar navbar-light navbar-custom fixed-left" style="display: block; padding: .5rem .5rem;" id="sticky-sidebar">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-side"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #4dc5d8;">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse nav flex-column" id="navbarSupportedContent-side">
+                    <a class="nav-link nav-link nav-box curmudgeon" ui-sref="home">Trip <span class="sr-only">(current)</span></a>
+                    <a class="nav-link nav-link nav-box curmudgeon" ui-sref="employees">Employees</a>
+                    <a class="nav-link nav-link nav-box curmudgeon" ui-sref="students">Students</a>
+                </div>
+            </nav> -->
             <div class="col">
                 <div class="form-card block form-card-hiden" style="width: 35rem;margin: 10px 20px 20px 0px;padding: 15px;">
                     <h3 style="text-align: center; color: blue;">
@@ -37,6 +49,9 @@
                                 Password:
                             </label>
                             <div class="col-sm-10" ng-class="{'has-error':empData.password.$invalid && !empData.password.$pristine}">
+                                <!-- <input class="form-control form-control-sm in-style" id="inputPassword" type="password"
+                                    name="password" ng-model="employeeData.password" placeholder="Enter Password..."
+                                    required> -->
                                 <input class="form-control form-control-sm in-style" id="inputPassword" type="password"
                                     name="password" ng-model="employeeData.password" ng-minlength="6" ng-maxlength="12"
                                     ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" placeholder="Enter Password..."
@@ -54,6 +69,8 @@
                                 Co-Password:
                             </label>
                             <div class="col-sm-10" ng-class="{'has-error':empData.co_password.$invalid && !empData.co_password.$pristine}">
+                                <!-- <input class="form-control form-control-sm in-style" id="inputCo-Password" type="password"
+                                    ng-model="employeeData.co_password" placeholder="Enter Co-Password..." required> -->
                                 <input class="form-control form-control-sm in-style" id="inputCo-Password" type="password"
                                     name="co_password" ng-model="employeeData.co_password" valid-password-c="employeeData.password"
                                     placeholder="Enter Co-Password..." required>
@@ -148,7 +165,7 @@
                         <hr style="margin-bottom: 0rem;">
                         <div class="btn-group btn-group-lg" style="width: 100%;">
                             <button style="text-align: center;" class="btn btn-outline-success btn-style" type="submit"
-                                id="submit" ng-disabled="!employeeData.$valid" value="Add">Add</button>
+                                id="submit" value="Add">Add</button>
                             <button style="text-align: center;" class="btn btn-outline-danger btn-style" type="reset"
                                 ng-click="resetForm()" value="Reset">Reset</button>
                         </div>
@@ -157,4 +174,5 @@
             </div>
         </div>
     </div>
+    <!-- <ui-view></ui-view> -->
 </div>
