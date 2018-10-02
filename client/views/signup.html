@@ -1,0 +1,48 @@
+<div ng-controller="myCtrl" class="clo-xs-8 col-xs-push-2">
+    <div ng-hide="signingup">
+        <form class="signup-form mt-7" ng-submit="signup()">
+            <div class="mt-10">
+                <div class="form-group col-xs-12">
+                    <!--<label for="userName" class="col-xs-12">Username</label>-->
+                    <h2>SignUp:</h2>
+                    <div class="col-xs-12">
+                        <input type="text" class="form-control custom-form-control" id="userName" ng-model="signupParams.userName"
+                            ng-keyup='findCheckName(signupParams.userName)' placeholder="User Name">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <small ng-bind="Message" ng-style="{color:Color}"></small>
+                    </div>
+                </div>
+
+                <div class="form-group col-xs-12">
+                    <div class="col-xs-12">
+                        <input type="password" class="form-control custom-form-control" id="password" ng-model="signupParams.password"
+                            placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="form-group col-xs-12">
+                    <div class="col-xs-12">
+                        <input type="text" class="form-control custom-form-control" id="contactPhone" ng-model="signupParams.contactPhone"
+                            ng-keyup='findCheckName(signupParams.contactPhone)' placeholder="Mobile">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <small ng-bind="Message" ng-style="{color:Color}"></small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                </div>
+                <div class="col-xs-12 sign-in">
+
+                    <button type="submit" class="sign-up-btn btn-warning btn" ng-click="signUp()">Sigup</button>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

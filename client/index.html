@@ -35,7 +35,7 @@
     <!-- fixed-top -->
     <div ng-controller="myCtrl">
         <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom" style="border-bottom: 1px solid;">
-            <a class="navbar-brand" href="#">DATA BASE</a>
+            <a class="navbar-brand" href="#">DATA LOGISTICS</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -46,27 +46,26 @@
                     <li class="nav-item active">
                         <a class="nav-link" ui-sref="login">LogIn <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" ui-sref="home">Home<span class="sr-only">(current)</span></a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" ui-sref="employees">Employees</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" ui-sref="students">Students</a>
                     </li>
-<<<<<<< HEAD
-                     <!--<li class="nav-item">
-                        <button class="nav-link" data-target="#navbarWEX">Filters ....</button>
-                    </li>-->
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref="transactions()">Transactions Form</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref="transList">Transactions List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref="signup()">Create Account</a>
+                    </li>
                 </ul>
-                <!-- <form class="form-inline my-2 my-lg-0">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form> -->
                 <a href="#" ng-click="logOut()">LogOut</a>
-=======
-                    
-                </ul>
-               
-                <span class="ml-auto navbar-text">Text</span>
->>>>>>> commited
             </div>
         </nav>
         <ui-view></ui-view>

@@ -20,7 +20,6 @@ var studentSchema = new mongoose.Schema({
 var employeSchema = new mongoose.Schema({
   name: String,
   password: String,
-  // confirmpassword: String,
   dep: String,
   departmentName:String,
   id: String,
@@ -43,12 +42,22 @@ var accountSchema = new mongoose.Schema({
 
 var depSchema = new mongoose.Schema({
   dep: String,
-    Name:String
+  Name:String
+});
+
+var transSchema = new mongoose.Schema({
+  Date: Date,
+  Name:String,
+  mobileno: Number,
+  tonnage: Number,
+  rate: Number
 });
 
 module.exports = {
     studentCollection: mongoose.model('student', studentSchema, 'student'),
     AccountsCollection: mongoose.model('accounts', accountSchema, 'accounts'),
     employeCollection: mongoose.model('employe', employeSchema, 'employe'),
-    departmentCollection: mongoose.model('department', depSchema, 'department')
+    departmentCollection: mongoose.model('department', depSchema, 'department'),
+    transCollection: mongoose.model('transactions', transSchema, 'transactions')
+
 };

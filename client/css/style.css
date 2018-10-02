@@ -1,5 +1,5 @@
 body {
-  background-color: #00ccff !important;
+  background-color: #fdffff !important;
   background-image: url('');
 }
 
@@ -73,7 +73,7 @@ body {
 }
 
 .span-style {
-  color: rgb(26, 70, 167) !important;
+  color: rgb(253, 253, 255) !important;
 }
 
 .in-style {
@@ -426,4 +426,24 @@ body {
 
 .help-block {
   color: red;
+}
+.list{
+  text-align: center;
+  font-size: 12px;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 6%;
+}
+.list h1{
+  text-align: center;
+  font-family: fantasy;
+  text-decoration-line: underline;
+  display: inline-block;
+}
+.container{
+  font-size: 12px;
+  width: 50%;
+}
+.link{
+  float: right;
 }

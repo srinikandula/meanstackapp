@@ -1,0 +1,38 @@
+<div ng-controller="transListController">
+
+    <div class="list">
+        <h1>Transactions List</h1><li class="link">
+                <a class="btn btn-primary" type="button" ui-sref="transactions()">+ Add Trasaction</a>
+            </li>
+
+        <table class="table table-hover  table-responsive">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>S.No</th>
+                    <th>Date</th>
+                    <th>Supplier Name</th>
+                    <th>Mobile No</th>
+                    <th>Tonnage</th>
+                    <th>Rate per Tonnage</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr ng-repeat="transaction in transactions">
+                    <td scope="row">{{$index + 1}}</td>
+                    <td>{{transaction.Date}}</td>
+                    <td>{{transaction.Name}}</td>
+                    <td>{{transaction.mobileno}}</td>
+                    <td>{{transaction.tonnage}}</td>
+                    <td>{{transaction.rate}}</td>
+                    <td><button type="button" class="btn btn-info" ng-click="transEdit(transaction._id)">Edit</button></td>
+                    <td><button class="btn btn-danger" type="button" ng-click="transRemove(transaction._id)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</div>      
