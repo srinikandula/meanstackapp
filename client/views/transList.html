@@ -22,13 +22,13 @@
 
                 <tr ng-repeat="transaction in transactions">
                     <td scope="row">{{$index + 1}}</td>
-                    <td>{{transaction.Date}}</td>
+                    <td>{{transaction.Date | date:'dd-MM-y'}}</td>
                     <td>{{transaction.Name}}</td>
                     <td>{{transaction.mobileno}}</td>
                     <td>{{transaction.tonnage}}</td>
                     <td>{{transaction.rate}}</td>
-                    <td><button type="button" class="btn btn-info" ng-click="transEdit(transaction._id)">Edit</button></td>
-                    <td><button class="btn btn-danger" type="button" ng-click="transRemove(transaction._id)">Delete</button></td>
+                    <td><button type="button" class="fa fa-pencil-square-o e-style" ng-click="transEdit(transaction._id)"></button></td>
+                    <td><button class="fa fa-window-close-o c-style" type="button" ng-click="transRemove(transaction._id)"></button></td>
                 </tr>
             </tbody>
         </table>

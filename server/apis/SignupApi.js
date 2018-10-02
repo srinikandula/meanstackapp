@@ -20,6 +20,30 @@ signup.prototype.addUser = function (signupData, req, callback) {
         }
     });
 };
+signup.prototype.getUser = function (req, callback) {
+  var retObj = {
+    status: false,
+    messages: []
+  };
+  var query = {};
+  if (req.query.keyWord != null) {
+    query.name = {
+      $regex: req.query.firstName,
+      $options: 'i'
+    };
+  }
+
+  if (req.query.class != null) {
+    query.class = req.query.class;
+  }
+  console.log(query);
+  AccountsCollection.find(query).exec(function (err, signupData) {
+    retObj.status = true;
+    retObj.messages.push('Success');
+    retObj.signupData = signupData;
+    callback(retObj);
+  });
+};
 signup.prototype.findCheckName = function (req, callback) {
     var retObj = {
         status: false,

@@ -18,6 +18,12 @@ OpenRouter.post('/signUp',function(req, res) {
     });
 });
 
+OpenRouter.get('/signUp',function(req, res) {
+    Sup.getUser(req, function(result){
+        res.json(result);
+    });
+});
+
 OpenRouter.post('/logIn', function (req, res) {
     API.login(req, function (result) {
         res.json(result);
