@@ -413,7 +413,7 @@ app.controller('transListController', function ($scope, $http, $state, $statePar
       });
     } else {
       $http.post('/v1/transactions/add', params);
-      console.log('sjghlk', $scope.transData);
+      console.log('added', $scope.transData);
     }
   };
   $scope.resetForm = function () {
