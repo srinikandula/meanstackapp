@@ -37,10 +37,10 @@ signup.prototype.getUser = function (req, callback) {
     query.class = req.query.class;
   }
   console.log(query);
-  AccountsCollection.find(query).exec(function (err, signupData) {
+  AccountsCollection.find(query).exec(function (err, users) {
     retObj.status = true;
     retObj.messages.push('Success');
-    retObj.signupData = signupData;
+    retObj.users = users;
     callback(retObj);
   });
 };

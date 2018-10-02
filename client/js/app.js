@@ -29,7 +29,7 @@ app.factory('Service', ['$http', function ($http) {
 
 app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider
-    
+
     .state({
       name: 'signup',
       url: '/signup',
@@ -54,10 +54,16 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', functio
     })
 
     .state({
+      name: 'UserAccounts',
+      url: '/UserAccounts',
+      templateUrl: 'views/users.html'
+    })
+
+    .state({
       name: 'edittransactions',
       url: '/edittransactions/:id',
       templateUrl: 'views/edittransactions.html'
-    })
+    });
 
   // $urlRouterProvider.otherwise('/login');
 }]);
@@ -199,6 +205,22 @@ app.controller("myCtrl", ['$scope', 'Service', '$state', '$cookies', '$http', fu
   $scope.signup = function () {
     $state.go('signup');
   };
+
+  $http({
+    url: '/v1/login/getAll',
+    method: 'GET'
+  }).then(
+    function (response) {
+      console.log('got users ', response);
+
+
+      $scope.users = response.data.users;
+    },
+    function (error) {
+      console.log('error getting users list');
+    }
+  );
+
   $scope.findCheckName = function () {
     // alert('hiii');
     var params = {

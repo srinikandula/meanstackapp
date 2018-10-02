@@ -1,0 +1,31 @@
+<div ng-controller="myCtrl">
+        <div class="list">
+                <h1>Users List</h1><li class="link">
+                        <a class="btn btn-primary" type="button" ui-sref="signup">+ Add User</a>
+                    </li>
+        <table class="table table-hover  table-responsive">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>S.No</th>
+                        <th>Created At</th>
+                        <th>User Name</th>
+                        <th>Mobile No</th>
+                        <th>Passwords</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+    
+                    <tr ng-repeat="user in users">
+                        <td scope="row">{{$index + 1}}</td>
+                        <td>{{user.createdAt | date:'dd-MM-y'}}</td>
+                        <td>{{user.userName}}</td>
+                        <td>{{user.contactPhone}}</td>
+                        <td>{{user.password}}</td>
+                        <td><button type="button" class="fa fa-pencil-square-o e-style" ng-click="transEdit(transaction._id)"></button></td>
+                        <td><button class="fa fa-window-close-o c-style" type="button" ng-click="transRemove(transaction._id)"></button></td>
+                    </tr>
+                </tbody>
+            </table>
+</div>

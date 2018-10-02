@@ -21,6 +21,8 @@ app.use('/v1/login', logIn.OpenRouter);
 
 app.use(authMiddleware);
 app.use('/v1/transactions', Transactions.AuthRouter);
+app.use('/v1/login', logIn.AuthRouter);
+
 
 
 var server = app.listen(app.get('port'), function() {

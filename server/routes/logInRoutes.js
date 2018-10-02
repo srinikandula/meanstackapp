@@ -1,13 +1,14 @@
 var express = require('express');
 
 var OpenRouter = express.Router();
+var AuthRouter = express.Router();
 
 var API = require('../apis/logInApi');
 var Sup = require('../apis/SignupApi');
-var Find = require('../apis/SignupApi');
+
 
 OpenRouter.post('/findCheckName', function (req, res) {
-    Find.findCheckName(req, function (result) {
+    Sup.findCheckName(req, function (result) {
       res.json(result);
     });
   });
@@ -18,7 +19,7 @@ OpenRouter.post('/signUp',function(req, res) {
     });
 });
 
-OpenRouter.get('/signUp',function(req, res) {
+AuthRouter.get('/getAll',function(req, res) {
     Sup.getUser(req, function(result){
         res.json(result);
     });
@@ -31,5 +32,6 @@ OpenRouter.post('/logIn', function (req, res) {
 });
 
 module.exports = {
-    OpenRouter: OpenRouter
+    OpenRouter: OpenRouter,
+    AuthRouter:AuthRouter
 };
