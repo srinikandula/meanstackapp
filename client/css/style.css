@@ -1,6 +1,8 @@
-body {
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Anton|Montserrat');
+body{
   background-color: #fdffff !important;
-  background-image: url('');
+    font-family: 'Montserrat', sans-serif;
 }
 
 

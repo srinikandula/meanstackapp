@@ -1,10 +1,34 @@
+<style>
+        h1{
+            text-align: center;
+            color:white;
+            font-size: 30px;
+            margin-top: 60px;
+            font-family: 'Anton', sans-serif;
+        }
+        form{
+            width:300px;
+            margin:auto;
+        }
+        img{
+            margin-left: 80px;
+        }
+        .well{
+            background-color: white;
+            margin:auto;
+            width:393px;
+            height:480px;
+            margin-top:15px;
+        }
+    </style>
+
 <div ng-controller="myCtrl" class="clo-xs-8 col-xs-push-2">
     <div ng-hide="signingup">
-        <form class="signup-form mt-7" ng-submit="signup()">
+        <form class="well" ng-submit="signup()">
             <div class="mt-10">
                 <div class="form-group col-xs-12">
                     <!--<label for="userName" class="col-xs-12">Username</label>-->
-                    <h2>SignUp:</h2>
+                    <h1>Sign Form:</h1>
                     <div class="col-xs-12">
                         <input type="text" class="form-control custom-form-control" id="userName" ng-model="signupParams.userName"
                             ng-keyup='findCheckName(signupParams.userName)' placeholder="User Name">
