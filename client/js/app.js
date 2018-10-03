@@ -40,7 +40,7 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', functio
       templateUrl: 'views/edittransactions.html'
     });
 
-  // $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/login');
 }]);
 
 app.config(['$httpProvider', function ($httpProvider) {

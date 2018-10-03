@@ -32,7 +32,6 @@ app.controller("myCtrl", ['$scope', 'Service', '$state', '$cookies', '$http', fu
       });
     };
     $scope.logOut = function () {
-      console.log("log out function....");
       $cookies.remove('token');
       $state.go('login');
     };
