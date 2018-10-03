@@ -12,10 +12,11 @@
     <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>-->
 
     <script src="components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="./js/app.js"></script>
-    <script src="./js/transactionsModule.js"></script>
-    <script src="./js/usersModule.js"></script>
     <script src="components/angular-cookies/angular-cookies.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/transactionsModule.js"></script>
+    <script src="js/usersModule.js"></script>
 
     <!-- Compiled and minified JavaScript -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
@@ -24,98 +25,46 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
         crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/sidenavbar-style.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Compiled and minified CSS -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <!-- <script src="http://code.jquery.com/jquery-2.1.1.min.map"></script> -->
 </head>
 
 <body ng-app="myApp">
 
 
     <!-- fixed-top -->
-    <div ng-app="myApp">
-        <div class="container" style="margin: 8px auto !important;">
-            <div class="row">
-                <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
-                    <a class="navbar-brand" href="#">EASY GADDI</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+    <div ng-controller="myCtrl">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom" style="border-bottom: 1px solid;">
+            <a class="navbar-brand" href="#">DATA LOGISTICS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link nav-box curmudgeon" ui-sref="home">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-box curmudgeon" ui-sref="employees">Employees</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-box curmudgeon" ui-sref="students">Students</a>
-                            </li>
-                        </ul>
-                        <span class="ml-auto">
-                            <form class="form-inline" action="/action_page.php">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text filter-style">
-                                            <i class=" fa fa-filter" aria-hidden="true"></i>
-                                        </span>
-                                    </div>
-                                    <input class="form-control form-control-sm filter-input-style" id="inputName" type="text"
-                                        ng-model="searchtxt" placeholder="Search Any ...." required>
-                                </div>
-                            </form>
-                        </span>
-                        <span class="ml-4">
-                            <a class="nav-link nav-box curmudgeon" ui-sref="login">LogIn</a>
-                        </span>
-                    </div>
-                </nav>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" ui-sref="login"><span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref="transactions()">Transactions Form</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref="transList">Transactions List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref="signup()">Create Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref="UserAccounts">User Accounts</a>
+                    </li>
+                </ul>
+                <a href="#" ng-click="logOut()">LogOut</a>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div>
-                    <nav class="navbar navbar-light navbar-custom fixed-left" style="display: block; padding: .5rem .5rem;"
-                        id="sticky-sidebar">
-                        <!-- <a class="navbar-brand" href="#">EASY GADDI</a> -->
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-side"
-                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-                            style="background-color: #4dc5d8;">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-
-                        <div class="collapse navbar-collapse nav flex-column" id="navbarSupportedContent-side">
-                            <!-- <ul class=" mr-auto slide-ul-style"> -->
-                            <!-- <li class="nav-item active"> -->
-                            <a class="nav-link nav-link nav-box curmudgeon" ui-sref="tripes">Trip <span class="sr-only">(current)</span></a>
-                            <!-- </li> -->
-                            <!-- <li class="nav-item"> -->
-                            <a class="nav-link nav-link nav-box curmudgeon" ui-sref="employees">Employees</a>
-                            <!-- </li> -->
-                            <!-- <li class="nav-item"> -->
-                            <a class="nav-link nav-link nav-box curmudgeon" ui-sref="students">Students</a>
-                            <!-- </li> -->
-                            <!-- </ul> -->
-                        </div>
-                    </nav>
-                </div>
-                <div class="col">
-                    <ui-view></ui-view>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-
+        </nav>
+        <ui-view></ui-view>
     </div>
 
 
@@ -127,12 +76,6 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
         crossorigin="anonymous"></script>
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
 </body>
 
 </html>
