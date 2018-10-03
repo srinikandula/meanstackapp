@@ -96,10 +96,16 @@ app.controller('EmployeesListController', function (
     image: ''
   };
 
-  $scope.departments = [];
-  $scope.departmentData = {
-    dep: ''
-  };
+  .state({
+      name: 'signup',
+      url: '/signup',
+      templateUrl: 'views/signup.html'
+    })
+    .state({
+      name: 'login',
+      url: '/login',
+      templateUrl: 'views/login.html'
+    })
 
   $http({
     url: '/v1/employees/getAll',
@@ -132,83 +138,104 @@ app.controller('EmployeesListController', function (
     $http.delete('/v1/employees/remove/' + _id).then(function (response) {
       console.log(response);
     });
-  };
 
-  $scope.empEdit = function (_id) {
-    console.log('ID', _id);
-    $state.go('editEmp', {
-      id: _id
-    });
-    console.log(_id);
-  };
-
-  $scope.getEmployeeDetails = function () {
-    // console.log('$stateParams.id', $stateParams.id);
-    if ($stateParams.id) {
-      $http
-        .get('/v1/employees/getOne/' + $stateParams.id)
-        .then(function (response) {
-          console.log('got employee', response);
-          $scope.employeeData = response.data.data;
-          $scope.employeeData.dob = new Date($scope.employeeData.dob);
-          $scope.employeeData.doj = new Date($scope.employeeData.doj);
-          console.log($scope.employeeData);
-        });
-    } else {}
-  };
-
-  $scope.getEmployeeDetails();
-
-  $scope.EmpFormSubmit = function () {
-    var params = $scope.employeeData;
-
-    if (params._id) {
-      console.log('id', params._id);
-      $http.put('v1/employees/updateEmp', params).then(function (response) {
-        console.log(response);
+    $scope.empEdit = function (_id) {
+      console.log('ID', _id);
+      $state.go('editEmp', {
+        id: _id
       });
-    } else {
-      $http.post('/v1/employees/add', params);
-      console.log('sjghlk', $scope.employeeData);
-      console.log('data', params);
-    }
-  };
-
-  $scope.resetForm = function () {
-    $scope.employeeData = angular.copy($scope.employeeData);
-  };
-
-  $scope.calculateAge = function (dob) {
-    // console.log('hiiiii', dob);
-    var ageDifMs = Date.now() - dob.getTime();
-    var ageDate = new Date(ageDifMs); // miliseconds from epoch
-    $scope.employeeData.age = Math.abs(ageDate.getUTCFullYear() - 1970);
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
-  };
-
-  $scope.employeeData.doj = new Date();
-
-  $scope.checkName = function () {
-    // alert('hiii');
-    var params = {
-      username: $scope.employeeData.username,
-      // userId: $scope.employeeData.id
+      console.log(_id);
     };
-    $http.post('v1/employees/findname', params).then(function (response) {
-      if (response.data.status) {
-        $scope.Color = "red";
-        $scope.Message = "Name is NOT available";
-        console.log(response);
 
-      } else {
-        $scope.Color = "green";
-        $scope.Message = "Name is available";
-        // console.log("error while getting the data");
-      }
-    }, function (err) {
+    $scope.getEmployeeDetails = function () {
+      // console.log('$stateParams.id', $stateParams.id);
+      if ($stateParams.id) {
+        $http
+          .get('/v1/employees/getOne/' + $stateParams.id)
+          .then(function (response) {
+            console.log('got employee', response);
+            $scope.employeeData = response.data.data;
+            $scope.employeeData.dob = new Date($scope.employeeData.dob);
+            $scope.employeeData.doj = new Date($scope.employeeData.doj);
+            console.log($scope.employeeData);
+          });
+      } else {}
+    };
 
+    // Interceptor for redirecting to login page if not logged in
+    $httpProvider.interceptors.push(['$q', '$location', '$rootScope', '$cookies', function ($q, $location, $rootScope, $cookies) {
+      return {
+        'request': function (config) {
+          $rootScope.reqloading = true;
+          return config;
+        },
+        'response': function (config) {
+          $rootScope.reqloading = false;
+          return config;
+        },
+        'responseError': function (error) {
+          let status = error.status;
+          console.log('status ' + error.status);
+          if ([400, 401, 402, 403].indexOf(status) > -1) {
+            $cookies.remove('token');
+            $location.path('/login');
+            return $q.reject(error);
+          }
+        }
+      };
+    }]);
+  }]);
+
+$scope.EmpFormSubmit = function () {
+  var params = $scope.employeeData;
+
+  if (params._id) {
+    console.log('id', params._id);
+    $http.put('v1/employees/updateEmp', params).then(function (response) {
+      console.log(response);
     });
-  };
+  } else {
+    $http.post('/v1/employees/add', params);
+    console.log('sjghlk', $scope.employeeData);
+    console.log('data', params);
+  }
+};
+
+$scope.resetForm = function () {
+  $scope.employeeData = angular.copy($scope.employeeData);
+};
+
+$scope.calculateAge = function (dob) {
+  // console.log('hiiiii', dob);
+  var ageDifMs = Date.now() - dob.getTime();
+  var ageDate = new Date(ageDifMs); // miliseconds from epoch
+  $scope.employeeData.age = Math.abs(ageDate.getUTCFullYear() - 1970);
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+};
+
+$scope.employeeData.doj = new Date();
+
+$scope.checkName = function () {
+// alert('hiii');
+var params = {
+  username: $scope.employeeData.username,
+  // userId: $scope.employeeData.id
+};
+$http.post('v1/employees/findname', params).then(function (response) {
+  if (response.data.status) {
+    $scope.Color = "red";
+    $scope.Message = "Name is NOT available";
+    console.log(response);
+
+  } else {
+    $scope.Color = "green";
+    $scope.Message = "Name is available";
+    // console.log("error while getting the data");
+  }
+}, function (err) {
+
+});
+};
 });
 
 angular.module('UserValidation', []).directive('validPasswordC', function () {

@@ -9,8 +9,12 @@
 
     <script src="components/angular/angular.js"></script>
     <!-- <script src="../node_modules/angular/angular.js"></script> -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>-->
+
     <script src="components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="./js/app.js"></script>
+    <script src="./js/transactionsModule.js"></script>
+    <script src="./js/usersModule.js"></script>
     <script src="components/angular-cookies/angular-cookies.js"></script>
 
     <!-- Compiled and minified JavaScript -->
@@ -31,7 +35,9 @@
     <!-- <script src="http://code.jquery.com/jquery-2.1.1.min.map"></script> -->
 </head>
 
-<body>
+<body ng-app="myApp">
+
+
     <!-- fixed-top -->
     <div ng-app="myApp">
         <div class="container" style="margin: 8px auto !important;">
@@ -111,6 +117,7 @@
     <div>
 
     </div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
