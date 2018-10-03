@@ -14,13 +14,6 @@ app.factory('Service', ['$http', function ($http) {
           data: signupData
         }).then(success, error);
       },
-      Find: function (signupData, success, error) {
-        $http({
-          url: '/v1/login/signUp',
-          method: "POST",
-          data: signupData
-        }).then(success, error);
-      }
     };
   }]);
   
@@ -57,8 +50,13 @@ app.controller("myCtrl", ['$scope', 'Service', '$state', '$cookies', '$http', fu
       $state.go('signup');
     };
   
+    
+  }]);
+
+  app.controller("userCtrl",['$scope','$http',function ($scope , $http){
+  
     $http({
-      url: '/v1/login/getAll',
+      url: '/v1/users/getAll',
       method: 'GET'
     }).then(
       function (response) {
@@ -69,29 +67,6 @@ app.controller("myCtrl", ['$scope', 'Service', '$state', '$cookies', '$http', fu
       },
       function (error) {
         console.log('error getting users list');
-      }
-    );
-  
-    $scope.findCheckName = function () {
-      // alert('hiii');
-      var params = {
-        username: $scope.signupParams.userName,
-        contactPhone: $scope.signupParams.contactPhone,
-      };
-      console.log(params);
-      $http.post('v1/login/findCheckName', params).then(function (response) {
-        if (response.data.status) {
-          $scope.Color = "red";
-          $scope.Message = "Username already exists";
-          console.log(response);
-  
-        } else {
-          $scope.Color = "green";
-          $scope.Message = "Username is available";
-          // console.log("error while getting the data");
-        }
-      }, function (err) {
-  
       });
-    };
   }]);
+  
