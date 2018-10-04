@@ -9,8 +9,6 @@ Transactions.prototype.addTransactions = function (transData, req, callback) {
         status: false,
         messages: []
     };
-    console.log('transaction', transData);
-    console.log('data ' + transData);
     var transDoc = new transCollection({
         Date: transData.Date,
         Name: transData.Name,
@@ -43,7 +41,6 @@ Transactions.prototype.getTransaction = function (req, callback) {
         status: false,
         messages: []
     };
-    console.log("params....",req.params);
     var query = {
         _id: req.params._id
     };
@@ -120,7 +117,6 @@ Transactions.prototype.updateTransactions = function (id, transData, callback) {
             $set: transData
         },
         function (err, result) {
-            console.log('transaction data', transData);
             if (err) {
                 retObj.status = false;
                 retObj.messages.push('error in updating' + JSON.stringify(err));
@@ -167,7 +163,6 @@ Transactions.prototype.updateTransactions = function (id, transData, callback) {
 //     if (req.age != null) {
 //         query.age = req.age;
 //     }
-//     console.log(query);
 //     transCollection.find(query).exec(function (err, transactions) {
 //         retObj.status = true;
 //         retObj.messages.push('Success');
@@ -182,9 +177,7 @@ Transactions.prototype.sortTransactions = function (tonnage, callback) {
         messages: []
     };
     var query = {};
-    console.log(query);
-    transCollection
-        .find(query)
+    transCollection.find(query)
         .sort({
             tonnage: -1
         })
@@ -196,6 +189,5 @@ Transactions.prototype.sortTransactions = function (tonnage, callback) {
         });
 };
 
-// Employees.prototype.uploadEmployees = function() {};
 
 module.exports = new Transactions();

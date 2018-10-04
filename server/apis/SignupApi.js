@@ -36,7 +36,6 @@ signup.prototype.getUser = function (req, callback) {
   if (req.query.class != null) {
     query.class = req.query.class;
   }
-  console.log(query);
   AccountsCollection.find(query).exec(function (err, users) {
     retObj.status = true;
     retObj.messages.push('Success');
@@ -49,29 +48,22 @@ signup.prototype.findCheckName = function (req, callback) {
         status: false,
         messages: []
     };
-    console.log('hitAPI', req.body);
-    // console.log('hitAPI');
     var query = {
         username: req.body.userName,
         // id: req.body.userId
     };
-    console.log('flnvfnb', query);
     AccountsCollection.find(query, function (err, user) {
         if (err) {
-            console.log('Username exist');
             callback(retObj);
         }
-        console.log('data', user);
         if (user.length != 0) {
             if (user[0].username) {
-                console.log('Username already exists, username: ' + user);
                 retObj.status = true;
                 callback(retObj);
             }
         } else {
             retObj.status = false;
             retObj.messages.push("Username not exists");
-            console.log('data1', user);
             callback(retObj);
         }
     }); 

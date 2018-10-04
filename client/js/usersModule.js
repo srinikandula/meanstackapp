@@ -37,7 +37,6 @@ app.controller("myCtrl", ['$scope', 'Service', '$state', '$cookies', '$http', fu
     };
     $scope.signUp = function () {
       Service.signUp($scope.signupParams, function (sucessCallback) {
-        console.log("quack quack");
         if (sucessCallback.data.status) {
   
         }
@@ -59,13 +58,9 @@ app.controller("myCtrl", ['$scope', 'Service', '$state', '$cookies', '$http', fu
       method: 'GET'
     }).then(
       function (response) {
-        console.log('got users ', response);
-  
-  
         $scope.users = response.data.users;
       },
       function (error) {
-        console.log('error getting users list');
       });
   }]);
   

@@ -36,7 +36,6 @@ Users.prototype.getUser = function (req, callback) {
   if (req.query.class != null) {
     query.class = req.query.class;
   }
-  console.log(query);
   AccountsCollection.find(query).exec(function (err, users) {
     retObj.status = true;
     retObj.messages.push('Success');

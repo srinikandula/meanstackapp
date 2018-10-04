@@ -58,7 +58,6 @@ app.config(['$httpProvider', function ($httpProvider) {
       },
       'responseError': function (error) {
         let status = error.status;
-        console.log('status ' + error.status);
         if ([400, 401, 402, 403].indexOf(status) > -1) {
           $cookies.remove('token');
           $location.path('/login');
