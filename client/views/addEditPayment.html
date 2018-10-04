@@ -1,0 +1,39 @@
+<div ng-controller="addorEditPaymentController">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="pf-style">
+                    <div>
+                        <label class="focus-effect-for-input" aria-hidden="true">Add Payments</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="styling-input-list">
+                            <label class="focus-effect-for-input" aria-hidden="true">Date</label>
+                            <input ng-model="paymentData.date" type="date" class="form-control custom-form-control">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="styling-input-list">
+                            <label class="focus-effect-for-input" aria-hidden="true">Amount*</label>
+                            <input ng-model="paymentData.amount" type="text" class="form-control custom-form-control">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="styling-input-list">
+                            <label class="focus-effect-for-input" aria-hidden="true">Discription</label>
+                            <input ng-model="paymentData.discription" type="text" class="form-control custom-form-control">
+
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success" ng-click="addorEditPayment()">Submit</button>
+                    <button type="button" class="btn btn-danger">Cancel</button>{{10+2}}
+                </div>
+            </div>
+            <div class="col-sm-3"></div>
+
+        </div>
+    </div>
+</div>

@@ -72,7 +72,7 @@ app.factory('paymentService', ['$http', '$cookies', function ($http, $cookies) {
 }]);
 
 
-app.controller("TripesListController", ['tripService', '$scope', '$http', '$state', '$stateParams', function (tripService, $scope, $http, $state, $stateParams) {
+app.controller("tripesListController", ['tripService', '$scope', '$http', '$state', '$stateParams', function (tripService, $scope, $http, $state, $stateParams) {
     $scope.tripes = [];
     $scope.choices = [''];
 

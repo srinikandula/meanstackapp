@@ -1,64 +1,69 @@
 <div ng-controller="TripesListController" ng-init="tripEdit();">
     <div class="container-fluid">
-        <div class="row">
-
-            <div class="col-xs-12 col-sm-6">
-                <div class="form-group col-xs-12">
+        <div class="row" style="margin-top: 55px;">
+            <!-- <div class="tf-style"> -->
+            <div class="col-12">
+                <div class="form-group">
                     <div class="styling-input-list">
-                        <label class="focus-effect-for-input" aria-hidden="true">VehicleNumber*</label>
-                        <input ng-model="tripData.vehicleNumber" type="text" class="form-control custom-form-control">
-
+                        <label class="focus-effect-for-input" aria-hidden="true">Date</label>
+                        <input ng-model="tripData.date" type="date" class="form-control custom-form-control">
                     </div>
                 </div>
-                <div class="form-group col-xs-12">
+                <div class="form-group">
                     <div class="styling-input-list">
-                        <label class="focus-effect-for-input" aria-hidden="true">DriverName*</label>
-                        <input ng-model="tripData.driverName" type="text" class="form-control custom-form-control" id="contactPhone">
-
-
+                        <label class="focus-effect-for-input" aria-hidden="true">Truck Number*</label>
+                        <input ng-model="tripData.truckNumber" type="text" class="form-control custom-form-control">
                     </div>
                 </div>
-                <div class="form-group col-xs-12">
+                <div class="form-group">
+                    <div class="styling-input-list">
+                        <label class="focus-effect-for-input" aria-hidden="true">Dispatch Date</label>
+                        <input ng-model="tripData.dispatchDate" type="date" class="form-control custom-form-control">
+                    </div>
+                </div>
+                <div class="form-group">
                     <div class="styling-input-list">
                         <label class="focus-effect-for-input" aria-hidden="true">Driver Number</label>
                         <input ng-model="tripData.driverNumber" type="number" class="form-control custom-form-control">
-
-
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="styling-input-list">
+                        <label class="focus-effect-for-input" aria-hidden="true">Lr Number</label>
+                        <input ng-model="tripData.lrNumber" type="text" class="form-control custom-form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="styling-input-list">
+                        <label class="focus-effect-for-input" aria-hidden="true">Destination</label>
+                        <input ng-model="tripData.destination" type="text" class="form-control custom-form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="styling-input-list">
+                        <label class="focus-effect-for-input" aria-hidden="true">Party Name</label>
+                        <input ng-model="tripData.partyName" type="text" class="form-control custom-form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="styling-input-list">
+                        <label class="focus-effect-for-input" aria-hidden="true">Party Phone Number</label>
+                        <input ng-model="tripData.partyPhoneNumber" type="number" class="form-control custom-form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="styling-input-list">
+                        <label class="focus-effect-for-input" aria-hidden="true">Unloading Date</label>
+                        <input ng-model="tripData.unloadingDate" type="date" class="form-control custom-form-control">
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6">
-                <div class="form-group col-xs-12">
-                    <div class="styling-input-list">
-                        <label class="focus-effect-for-input" aria-hidden="true">From</label>
-                        <input ng-model="tripData.from" type="text" class="form-control custom-form-control">
-
-                    </div>
-                </div>
-                <!--<div class="form-group col-xs-12 col-sm-12">-->
-                <!--<label class="focus-effect-for-input" aria-hidden="true">To</label>-->
-                <!--<div class="styling-input-list" col-sm-10  ng-repeat="city in tripData.toCitys track by $index">-->
-                <!--<input ng-model="" type="text" class="form-control custom-form-control>-->
-                <!--</div>-->
-                <!--<div class="col-sm-1">-->
-                <!--<button class="btn btn-danger btn-sm" ng-click="deleteToCitys($index)">-->
-                <!--<i class="fa fa-times" aria-hidden="true"></i>-->
-                <!--</button>-->
-                <!--</div>-->
-
-                <!--<div class="col-sm-1">-->
-                <!--<button type="button" class="btn btn-info btn-sm" ng-click="addNewChoice()">-->
-                <!--<i class="fa fa-plus" aria-hidden="true"></i>-->
-                <!--</button>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-
-                <div class="col-xs-12">
+            <div class="col-12">
+                <div class="">
                     <div class="mb-0 ">
-                        <label class="focus-effect-for-input" aria-hidden="true">To</label>
+                        <label class="focus-effect-for-input" aria-hidden="true">Unloading Points</label>
 
-                        <div ng-repeat="trip in tripData.toCitys track by $index" class="col-xs-12 col-sm-12 form-group pl4-pr0 styling-input-list position-relative p-0">
+                        <div ng-repeat="trip in tripData.unloadingPoints track by $index" class="form-group pl4-pr0 styling-input-list position-relative p-0">
                             <div class="col-md-10 p-0">
                                 <input ng-model="trip.name" type="text" class="form-control custom-form-control" id="name">
                             </div>
@@ -78,21 +83,70 @@
                     </div>
                 </div>
 
-
-                <div class="form-group col-xs-12">
+                <div class="form-group ">
                     <div class="styling-input-list">
-                        <label class="focus-effect-for-input" aria-hidden="true">FreightAmount</label>
-                        <input ng-model="tripData.freightAmount" type="number" class="form-control custom-form-control">
-
+                        <label class="focus-effect-for-input" aria-hidden="true">Quantity</label>
+                        <input ng-model="tripData.quantity" type="text" class="form-control custom-form-control">
                     </div>
                 </div>
-                <div class="form-group col-xs-12">
+                <div class="form-group ">
                     <div class="styling-input-list">
-                        <label class="focus-effect-for-input" aria-hidden="true">PaidAmount</label>
-                        <input ng-model="tripData.paidAmount" type="number" class="form-control custom-form-control">
-
+                        <label class="focus-effect-for-input" aria-hidden="true">Freight Per Mt</label>
+                        <input ng-model="tripData.freightPerMt" type="number" class="form-control custom-form-control">
                     </div>
                 </div>
+                <div class="form-group ">
+                    <div class="styling-input-list">
+                        <label class="focus-effect-for-input" aria-hidden="true">Unloading Charges</label>
+                        <input ng-model="tripData.unloadingCharges" type="number" class="form-control custom-form-control">
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <div class="styling-input-list">
+                        <label class="focus-effect-for-input" aria-hidden="true">Total Amount Paid</label>
+                        <input ng-model="tripData.totalAmountPaid" type="number" class="form-control custom-form-control">
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <div class="styling-input-list">
+                        <label class="focus-effect-for-input" aria-hidden="true">Invioce Amount</label>
+                        <input ng-model="tripData.invoiceAmount" type="number" class="form-control custom-form-control">
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <div class="styling-input-list">
+                        <label class="focus-effect-for-input" aria-hidden="true">Profit/Loss</label>
+                        <input ng-model="tripData.profitOrLoss" type="number" class="form-control custom-form-control">
+                    </div>
+                </div>
+                <div class="form-group  ">
+                    <div class="styling-input-list">
+                        <label class="focus-effect-for-input" aria-hidden="true">FileUpload</label>
+                        <!--<customized-file-upload ng-model="files" folder="'jobs'"-->
+                        <!--class="'custom-form-control'">-->
+                        <!--</customized-file-upload>-->
+                        <div class="position-relative">
+                            <div class="col-md-10">
+                                <input ng-model="file" type="file" class="form-control custom-form-control" ngf-select
+                                    ng-change="fileUpload(file)">
+                                <button ng-click="fileUpload(tripData.file)">subit</button>
+                            </div>
+                            <div class="fileUploadPlus" ng-show="$last">
+                                <button type="button" class="btn btn-info btn-sm" ng-click="addNewFile()">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </button>
+                            </div>
+
+
+                            <div class="fileUploadMinus">
+                                <button class="btn btn-danger btn-sm" ng-show="!$last" ng-click="deleteToCitys($index)">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="btn-group btn-group-lg" style="width: 100%;">
                     <button style="text-align: center;" class="btn btn-outline-success btn-style" type="submit" id="submit"
                         value="addTrip" ng-click="TripFormSubmit()">Add Trip
@@ -102,148 +156,8 @@
                     </button>
                 </div>
             </div>
-        </div>
+            <!-- </div> -->
 
+        </div>
     </div>
 </div>
-
-
-<!--<div class="col-lg-12">-->
-<!--<div class="form-card trip-card block form-card-hiden" style="margin: 10px 20px 20px 0px;padding: 15px;">-->
-<!--<h3 style="text-align: center; color: #17a2b8;">-->
-<!--<u>Trip Form</u>-->
-<!--</h3>-->
-<!--&lt;!&ndash; <form class="needs-validation" name="tripData" id="tripData"> &ndash;&gt;-->
-<!--<div>-->
-<!--<div class="col-xs-6 col-xs-12 mt-10">-->
-<!--<div class="form-row form-box-style">-->
-<!--<label for="inputVehicleNumber" >-->
-<!--VehicleNumber:-->
-<!--</label>-->
-<!--<div >-->
-<!--<input class="form-control form-control-sm in-style" id="inputVehicleNumber" type="text"-->
-<!--ng-model="tripData.vehicleNumber" placeholder="Enter Vehicle Number..." required>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="form-row form-box-style">-->
-<!--<label for="inputDriverName" >-->
-<!--DriverName:-->
-<!--</label>-->
-<!--<div >-->
-<!--<input class="form-control form-control-sm in-style" id="inputDriverName" type="text"-->
-<!--ng-model="tripData.driverName" ng-keyup='checkdriverName(tripData.driverName)'-->
-<!--placeholder="Enter Driver Name..." required>-->
-<!--<div class="valid-feedback">-->
-<!--Looks good!-->
-<!--</div>-->
-<!--<small ng-bind="Message" ng-style="{color:Color}"></small>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="form-row form-box-style">-->
-<!--<label for="inputDriverName" >-->
-<!--DriverNumber:-->
-<!--</label>-->
-<!--<div >-->
-<!--<input class="form-control form-control-sm in-style" id="inputDriverNumber" type="number"-->
-<!--ng-model="tripData.driverNumber" placeholder="Enter Driver Number..." required>-->
-<!--<div class="valid-feedback">-->
-<!--Looks good!-->
-<!--</div>-->
-<!--<small ng-bind="Message" ng-style="{color:Color}"></small>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="form-row form-box-style">-->
-<!--<label for="inputFileUpload" >-->
-<!--FileUpload:-->
-<!--</label>-->
-<!--<div >-->
-<!--<input type="file" class="custom-file-input form-control-sm" ng-model="tripData.fileUpload"-->
-<!--id="customFile" name="filename">-->
-<!--<label class="custom-file-label" for="customFile">Choose file</label>-->
-<!--</div>-->
-<!--<div class="form-group col-xs-12">-->
-<!--<div ng-model="tripdata.fileUpload">-->
-<!--<span class="cursor-pointer" ng-click="viewAttachment(tripdata.key)">{{tripdata.fileName}}</span>-->
-
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="col-xs-6 col-xs-12 mt-10">-->
-<!--<div class="form-row form-box-style">-->
-<!--<label for="inputFrom" class="col-sm-3 col-form-label">-->
-<!--From:-->
-<!--</label>-->
-<!--<div class="col-sm-9">-->
-<!--<input class="form-control form-control-sm in-style" id="inputFrom" type="text"-->
-<!--ng-model="tripData.from" placeholder="Enter From..." required>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="form-row form-box-style">-->
-<!--<div class="col">-->
-<!--<div class="row">-->
-<!--<label for="inputTo" class="col-3 col-form-label">-->
-<!--To:-->
-<!--</label>-->
-<!--<div class="col-8" ng-repeat="city in tripData.toCitys track by $index">-->
-<!--<div class="row">-->
-
-<!--<div class="col-11">-->
-<!--<input class="form-control form-control-sm in-style" id="inputTo" type="text"-->
-<!--ng-model="city.name" placeholder="Enter To..." required>-->
-<!--</div>-->
-<!--<div class="col-1">-->
-<!--<button class="btn btn-danger btn-sm" ng-click="deleteToCitys($index)">-->
-<!--<i class="fa fa-times" aria-hidden="true"></i>-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="col-1">-->
-<!--<button type="button" class="btn btn-info btn-sm" ng-click="addNewChoice()">-->
-<!--<i class="fa fa-plus" aria-hidden="true"></i>-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="form-row form-box-style">-->
-<!--<label for="inputFreightAmount" class="col-sm-3 col-form-label">-->
-<!--FreightAmount:-->
-<!--</label>-->
-<!--<div class="col-sm-9">-->
-<!--<input class="form-control form-control-sm in-style" id="inputFreightAmount" type="text"-->
-<!--ng-model="tripData.freightAmount" placeholder="Enter FreightAmount..." required>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-row form-box-style">-->
-<!--<label for="inputPaidAmount" class="col-sm-3 col-form-label">-->
-<!--PaidAmount:-->
-<!--</label>-->
-<!--<div class="col-sm-9">-->
-<!--<input class="form-control form-control-sm in-style" id="inputPaidAmount" type="text"-->
-<!--ng-model="tripData.paidAmount" placeholder="Enter PaidAmount..." required>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<hr style="margin-bottom: 0rem;">-->
-<!--<div class="btn-group btn-group-lg" style="width: 100%;">-->
-<!--<button style="text-align: center;" class="btn btn-outline-success btn-style" type="submit"-->
-<!--id="submit" value="addTrip" ng-click="TripFormSubmit()">Add Trip</button>-->
-<!--<button style="text-align: center;" class="btn btn-outline-danger btn-style" type="reset"-->
-<!--ng-click="resetForm()" value="Reset">Reset</button>-->
-<!--</div>-->
-<!--</form>-->
-<!--</div>-->
-<!--</div >-->
-<!--</div>-->
-<!--</div>-->
-
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->

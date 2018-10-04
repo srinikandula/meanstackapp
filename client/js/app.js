@@ -17,6 +17,12 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', functio
     })
 
     .state({
+      name: 'tripes',
+      url: '/tripes',
+      templateUrl: 'views/trip_view.html'
+    })
+
+    .state({
       name: 'transactions',
       url: '/transactions',
       templateUrl: 'views/transactions.html'
@@ -38,7 +44,32 @@ app.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', functio
       name: 'edittransactions',
       url: '/edittransactions/:id',
       templateUrl: 'views/edittransactions.html'
-    });
+    }).state({
+      name: 'tripEdit',
+      url: '/tripEdit/:id',
+      templateUrl: 'views/trip_view.html',
+      data:{id:null}
+  }).state({
+      name: 'tripsList',
+      url: '/tripsList',
+      templateUrl: 'views/tripsList.html'
+  }).state({
+      name: 'addTrip',
+      url: '/addTrip',
+      templateUrl: 'views/trip_view.html'
+  }).state({
+      name: 'addPayment',
+      url: '/addPayment',
+      templateUrl: 'views/addEditPayment.html'
+  }).state({
+      name: 'paymentList',
+      url: '/paymentList',
+      templateUrl: 'views/paymentsList.html'
+  }).state({
+      name: 'paymentEdit',
+      url: '/paymentEdit/:id',
+      templateUrl: 'views/addEditPayment.html'
+  });
 
   $urlRouterProvider.otherwise('/login');
 }]);

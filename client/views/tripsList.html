@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <div ng-controller="TripesListController">
+    <meta charset="UTF-8">
+    <div class="col-lg-12">
+        <table class="table table-hover  table-responsive">
+            <thead class="thead-inverse">
+            <tr>
+                <th>S.No</th>
+                <th>Date</th>
+                <th>Truck Number</th>
+                <th>Dispatch Date</th>
+                <th>Driver Number</th>
+                <th>Lr Number</th>
+                <th>Destination</th>
+                <th>Party Name</th>
+                <th>Party Phone Number</th>
+                <th>Unloading Date</th>
+                <th>Unloading Points</th>
+                <th>Quantity</th>
+                <th>Freight Per Mt</th>
+                <th>Unloading Charges</th>
+                <th>Total Amount Paid</th>
+                <th>Invoice Amount</th>
+                <th>Profit/Loss</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="trip in tripes">
+                <td scope="row">{{$index + 1}}</td>
+                <td>{{trip.date |date :  "dd.MM.y"}}</td>
+                <td>{{trip.truckNumber}}</td>
+                <td>{{trip.dispatchDate |date :  "dd.MM.y"}}</td>
+                <td>{{trip.driverNumber}}</td>
+                <td>{{trip.lrNumber}}</td>
+                <td>{{trip.destination}}</td>
+                <td>{{trip.partyName}}</td>
+                <td>{{trip.partyPhoneNumber}}</td>
+                <td>{{trip.unloadingDate |date :  "dd.MM.y"}}</td>
+                <td>{{trip.unloadingPoints[0].name}}</td>
+                <td>{{trip.quantity}}</td>
+                <td>{{trip.freightPerMt}}</td>
+                <td>{{trip.unloadingCharges}}</td>
+                <td>{{trip.totalAmountPaid}}</td>
+                <td>{{trip.invoiceAmount}}</td>
+                <td>{{trip.profitOrLoss}}</td>
+                <td><button type="button" class="btn btn-info" ui-sref="tripEdit({id:trip._id})">Edit</button></td>
+                <td><button class="btn btn-danger" type="button" ng-click="tripRemove(trip._id)">Delete</button></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</head>
+<body>
+</div>
+
+</body>
+</html>
