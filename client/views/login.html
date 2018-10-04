@@ -1,54 +1,49 @@
-<style>
-        h1{
-            text-align: center;
-            color:white;
-            font-size: 30px;
-            margin-top: 60px;
-            font-family: 'Anton', sans-serif;
-        }
-        form{
-            width:300px;
-            margin:auto;
-        }
-        img{
-            margin-left: 80px;
-        }
-        .well{
-            background-color: white;
-            margin:auto;
-            width:393px;
-            height:480px;
-            margin-top:15px;
-        }
-    </style>
-    
-<div  ng-controller="myCtrl"style="background-color: #18121E;height:585px;margin-top:-4px"> 
-        <div>
-            <div>
-                <!--sets the form in center....offset is for alignment purpose-->
-                <div>
-                    <h1>LogIn Form</h1>
-                    <div class="well">
-                        <form ng-submit="logIn()">
-                            <img class="img-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrCTuM45LpaWP84oJiNXXu20WVgg5wmyDKbNN3cEOdbpUVySCt0g" class="img-circle" alt="user" width="150" height="150">
-                            <div class="form-group">
-                                <label for="userName">UserName:</label>
-                                <input type="text" class="form-control" ng-model="loginParams.userName">
+<div ng-controller="myCtrl">
+
+    <div class="container-fluid register" style="background: -webkit-linear-gradient(left, #17a2b8, #00c6ff)">
+        <div class="row" style="padding: 79px 0px;">
+            <div class="col-md-4 register-left">
+                <i class="fa fa-user-o fa-5x" aria-hidden="true" style="margin-bottom: 30px; margin-top: 60px; border-bottom: 5px solid white;"></i>
+                <h3>Welcome</h3>
+                <p>You are SignUp click signup button!</p>
+                <!-- <input type="submit" name="" value="Login" /><br /> -->
+                <button type="submit" class="sign-up-btn btn-danger btn" style="width: 220px; border-radius: 50px;"
+                    ng-click="signup()">SigUp</button>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-7" style="padding-right: 0px;">
+                <div class="login-style" ng-hide="isLoggedIn">
+                    <div style="margin-left: 0px;">
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-10">
+                                <h1>LogIn Form</h1>
+                                <!-- <div class="well"> -->
+                                <form ng-submit="logIn()">
+                                    <div class="form-group">
+                                        <label for="userName">UserName:</label>
+                                        <input type="text" class="form-control" ng-model="loginParams.userName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password:</label>
+                                        <input type="password" class="form-control" ng-model="loginParams.password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contactPhone">Mobile</label>
+                                        <input type="text" class="form-control" ng-model="loginParams.contactPhone">
+                                    </div>
+
+                                    <button type="submit" class="sign-in-btn btn-primary btn" style="width: 200px; border-radius: 50px;"
+                                        ng-click="login()">Login</button>
+                                    <!-- <button type="submit" class="sign-up-btn btn-danger btn" ng-click="signup()">Sigup</button> -->
+                                </form>
                             </div>
-                            <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input type="password" class="form-control" ng-model="loginParams.password">
-                            </div>
-                            <div class="form-group">
-                                <label for="contactPhone">Mobile</label>
-                                <input type="text" class="form-control" ng-model="loginParams.contactPhone">
-                            </div>
-                           
-                            <button type="submit" class="sign-in-btn btn-primary btn" ng-click="login()">Login</button>
-                            <button type="submit" class="sign-up-btn btn-danger btn" ng-click="signup()">Sigup</button>
-                        </form>
+                            <div class="col-lg-1"></div>
+                        </div>
+                        <!-- <hr> -->
                     </div>
                 </div>
             </div>
         </div>
- </div>
+    </div>
+</div>

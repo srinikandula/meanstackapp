@@ -8,6 +8,8 @@ var authMiddleware = require('./server/middleware/auth');
 var logIn = require('./server/routes/logInRoutes');
 
 var Transactions = require('./server/routes/transRoutes');
+var Trip = require('./server/routes/tripRoutes');
+// var Payment = require('./server/routes/paymentRoutes');
 
 app.set('port', config.port);
 app.use(express.static('client'));
@@ -26,6 +28,8 @@ app.use('/v1/login', logIn.OpenRouter);
 app.use(authMiddleware);
 app.use('/v1/transactions', Transactions.AuthRouter);
 app.use('/v1/login', logIn.AuthRouter);
+app.use('/v1/tripes', Trip.AuthRouter);
+// app.use('/v1/payments', Payment.AuthRouter);
 
 
 

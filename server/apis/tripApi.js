@@ -10,18 +10,22 @@ Tripes.prototype.addTrip = function (tripData, req, callback) {
     console.log('trip', tripData);
     console.log('data ' + tripData);
 
-    var tripDoc = new tripCollection({
-        vehicleNumber: tripData.vehicleNumber,
-        driverName: tripData.driverName,
-        driverNumber: tripData.driverNumber,
-        fileUpload: tripData.fileUpload,
-        from: tripData.from,
-        to: [{
-            name: choices.name
-        }],
-        freightAmount: tripData.freightAmount,
-        paidAmount: tripData.paidAmount,
-    });
+    // var tripDoc = new tripCollection({
+    //     vehicleNumber: tripData.vehicleNumber,
+    //     driverName: tripData.driverName,
+    //     driverNumber: tripData.driverNumber,
+    //     fileUpload: tripData.fileUpload,
+    //     from: tripData.from,
+    //     to: [{
+    //         name: choices.name
+    //     }],
+    //     freightAmount: tripData.freightAmount,
+    //     paidAmount: tripData.paidAmount,
+    // });
+    // tripDoc.save(tripDoc, function (error, document) {
+    //     callback();
+    // });
+    var tripDoc = new tripCollection(tripData);
     tripDoc.save(tripDoc, function (error, document) {
         callback();
     });

@@ -18,6 +18,8 @@
     <script src="js/transactionsModule.js"></script>
     <script src="js/usersModule.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <!-- Compiled and minified JavaScript -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
 
@@ -25,6 +27,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
         crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/sidenavbar-style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Compiled and minified CSS -->
@@ -36,7 +39,7 @@
 
     <!-- fixed-top -->
     <div ng-controller="myCtrl">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom" style="border-bottom: 1px solid;">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
             <a class="navbar-brand" href="#">DATA LOGISTICS</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +67,52 @@
                 <a href="#" ng-click="logOut()">LogOut</a>
             </div>
         </nav>
-        <ui-view></ui-view>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="sidebar left collapsed active" href="#" data-toggle="collapse" data-target="#dashboard"
+                    style="margin-top: 56px; max-height: 100%; height: 613px;">
+                    <ul class="list-sidebar bg-defoult">
+                        <li class="nav-item">
+                            <i class="fa fa-bars" style="padding: 10px 13px; color: white;" aria-hidden="true" id="left_nav"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link nav-box curmudgeon" ui-sref="addTrip">
+                                <!-- <i class="fa fa-th-large"></i> -->
+                                <i class="fa fa-bus" aria-hidden="true"></i>
+                                <span class="nav-label">
+                                    Trip
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link nav-box curmudgeon" ui-sref="tripsList">
+                                <!-- <i class="fa fa-diamond"></i> -->
+                                <i class="fa fa-list" aria-hidden="true"></i>
+                                <span class="nav-label">TripsList</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link nav-box curmudgeon" ui-sref="addPayment">
+                                <!-- <i class="fa fa-diamond"></i> -->
+                                <i class="fa fa-money" aria-hidden="true"></i>
+                                <span class="nav-label">AddPayments</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col" style="padding: 0px;">
+                    <script>
+                        $(document).ready(function () {
+                            $('#left_nav').click(function () {
+                                $('.sidebar').toggleClass('fliph');
+                            });
+                        });
+                    </script>
+                    <ui-view></ui-view>
+                </div>
+            </div>
+        </div>
+        <!-- <ui-view></ui-view> -->
     </div>
 
 
