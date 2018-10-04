@@ -1,4 +1,3 @@
-
 app.factory('paymentService', ['$http', '$cookies', function ($http, $cookies) {
     return {
         addPayment: function (params, success, error) {
@@ -26,7 +25,8 @@ app.factory('paymentService', ['$http', '$cookies', function ($http, $cookies) {
                 url: 'v1/tripes/getOne/' + _id,
                 method: "GET"
             }).then(success, error)
-        }, tripDelete: function (_id, success, error) {
+        },
+        tripDelete: function (_id, success, error) {
             $http({
                 url: 'v1/tripes/removeTrip/' + _id,
                 method: "DELETE"
@@ -51,15 +51,13 @@ app.controller("addorEditPaymentController", ['paymentService', '$scope', '$http
                 console.log('response', response)
                 if (response.data.status)
                     $state.go('paymentsList');
-            }, function () {
-            });
+            }, function () {});
         } else {
             paymentService.addPayment(params, function (success) {
                 if (success.data.status) {
                     console.log("addes successfully");
                 }
-            }, function (err) {
-            })
+            }, function (err) {})
             $state.go('tripsList');
         }
     };
@@ -69,13 +67,12 @@ app.controller("addorEditPaymentController", ['paymentService', '$scope', '$http
 app.controller("paymentListController", ['paymentService', '$scope', '$http', '$state', '$stateParams', function (paymentService, $scope, $http, $state, $stateParams) {
 
     $scope.getall = function () {
-            tripService.getAllPayments( function (response) {
-                console.log('response', response)
-                $scope.payments=response.data.data;
-                $state.go('paymentsList');
-            }, function () {
-            });
-        }
+        tripService.getAllPayments(function (response) {
+            console.log('response', response)
+            $scope.payments = response.data.data;
+            $state.go('paymentsList');
+        }, function () {});
+    }
 
 
 

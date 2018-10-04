@@ -8,28 +8,27 @@ Payments.prototype.addPayments = function (paymentData, req, callback) {
     };
     var paymentDoc = new paymentCollection(paymentData);
     paymentDoc.save(paymentDoc, function (err, document) {
-        if(err){
-            retObj.status=false;
+        if (err) {
+            retObj.status = false;
             retObj.messages.push("please try again");
             callback(retObj);
-        }else{
-            retObj.status=true;
+        } else {
+            retObj.status = true;
             retObj.messages.push("Payment added successfully");
             callback(retObj);
         }
     });
 };
-Payments.prototype.getPayments=function(req,callback){
+Payments.prototype.getPayments = function (req, callback) {
     var retObj = {
         status: false,
         messages: []
     };
-    paymentCollection.find({}).exec(function(err,payments){
-        if(payments)
-        {
-            retObj.status=true;
+    paymentCollection.find({}).exec(function (err, payments) {
+        if (payments) {
+            retObj.status = true;
             retObj.messages.push('Success');
-            retObj.payments=payments;
+            retObj.payments = payments;
             callback(retObj);
         }
 
@@ -40,7 +39,7 @@ Payments.prototype.getOneTrip = function (req, callback) {
         status: false,
         messages: []
     };
-    var query=req.params;
+    var query = req.params;
     console.log('objectId', req.params)
     paymentCollection.findOne(query,
         function (err, result) {
@@ -49,7 +48,7 @@ Payments.prototype.getOneTrip = function (req, callback) {
                 retObj.messages.push('error in updating' + JSON.stringify(err));
 
             } else {
-                console.log('trip',result);
+                console.log('trip', result);
                 retObj.status = true;
                 retObj.messages.push('Successfully updated');
                 retObj.data = result;
@@ -104,4 +103,4 @@ Payments.prototype.deletePayment = function (id, callback) {
         }
     });
 };
-module.exports= new Payments();
+module.exports = new Payments();
