@@ -1,4 +1,4 @@
-<div ng-controller="transListController">
+   <div ng-controller="transListController">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -60,9 +60,9 @@
                                     ng-model="transData.rate" placeholder=".Rs" required>
                             </div>
                         </div>
-                        <hr style="margin-bottom: 0rem;">
+                        <hr style="margin-bottom: 0rem;">  
                         <div class="btn-group btn-group-lg" style="width: 100%;">
-                            <button style="text-align: center;" class="btn btn-outline-success btn-style" type="submit"
+                            <button style="text-align: center;" class="btn btn-outline-success btn-style" type="submit" 
                                 id="submit" value="Add">Add</button>
                             <button style="text-align: center;" class="btn btn-outline-danger btn-style" type="reset"
                                 ng-click="resetForm()" value="Reset">Reset</button>
@@ -73,4 +73,8 @@
         </div>
     </div>
     <ui-view></ui-view>
+    
 </div>
+
+</body>
+</html>

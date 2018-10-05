@@ -307,7 +307,7 @@ body{
   /* background-color: #17a2b8; */
   /* position: relative; */
   /* height: 300px; */
-  background-image: linear-gradient(rgb(0, 146, 231),rgb(61, 219, 40));
+  background-image: linear-gradient(rgb(42, 117, 187),rgb(255, 0, 55));
   border-bottom-left-radius: 0% 0%;
   border-bottom-right-radius: 0% 0%;
 }
@@ -357,4 +357,11 @@ body{
 }
 .link{
   float: right;
+}
+.a{
+  color: black;
+}
+.a:hover{
+  color: white;
+  text-decoration: none;
 }

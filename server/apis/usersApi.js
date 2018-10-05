@@ -1,8 +1,8 @@
 var AccountsCollection = require('./../models/schemas').AccountsCollection;
 
-var signup = function () {};
+var Users = function () {};
 
-signup.prototype.addUser = function (signupData, req, callback) {
+Users.prototype.addUser = function (signupData, req, callback) {
     var retObj = {
         status: false,
         messages: []
@@ -20,7 +20,7 @@ signup.prototype.addUser = function (signupData, req, callback) {
         }
     });
 };
-signup.prototype.getUser = function (req, callback) {
+Users.prototype.getUser = function (req, callback) {
   var retObj = {
     status: false,
     messages: []
@@ -43,30 +43,29 @@ signup.prototype.getUser = function (req, callback) {
     callback(retObj);
   });
 };
-signup.prototype.findCheckName = function (req, callback) {
-    var retObj = {
-        status: false,
-        messages: []
-    };
-    var query = {
-        username: req.body.userName,
-        // id: req.body.userId
-    };
-    AccountsCollection.find(query, function (err, user) {
-        if (err) {
-            callback(retObj);
-        }
-        if (user.length != 0) {
-            if (user[0].username) {
-                retObj.status = true;
-                callback(retObj);
-            }
-        } else {
-            retObj.status = false;
-            retObj.messages.push("Username not exists");
-            callback(retObj);
-        }
-    }); 
+
+Users.prototype.deleteUser = function (id, callback) {
+  var retObj = {
+      status: false,
+      messages: []
+  };
+  var query = {
+      _id: id
+  };
+
+  AccountsCollection.remove(query, function (err, result) {
+      if (err) {
+          retObj.status = false;
+          retObj.messages.push('error while deleting' + JSON.stringify(err));
+          callback(retObj);
+      } else {
+          retObj.status = true;
+          retObj.messages.push('successfully deleted');
+          retObj.data = result;
+          callback(retObj);
+      }
+  });
 };
 
-module.exports = new signup();
+
+module.exports = new Users();

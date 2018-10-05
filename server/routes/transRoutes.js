@@ -20,7 +20,6 @@ AuthRouter.delete('/remove/:id', function(req, res) {
 
 AuthRouter.get('/getAll', function(req, res) {
     trans.getTransactions(req, function(result) {
-      console.log("transactions.......",result);
     res.send(result);
   });
 });
