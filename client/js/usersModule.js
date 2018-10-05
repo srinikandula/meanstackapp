@@ -62,5 +62,16 @@ app.controller("myCtrl", ['$scope', 'Service', '$state', '$cookies', '$http', fu
       },
       function (error) {
       });
+
+      $scope.userRemove = function (_id) {
+        $http.delete('/v1/users/remove/' + _id).then(function (response) {
+        });
+      };
+    
+      // $scope.userEdit = function (_id) {
+      //   $state.go('edituser', {
+      //     id: _id
+      //   });
+      // };
   }]);
   

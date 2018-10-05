@@ -44,5 +44,28 @@ Users.prototype.getUser = function (req, callback) {
   });
 };
 
+Users.prototype.deleteUser = function (id, callback) {
+  var retObj = {
+      status: false,
+      messages: []
+  };
+  var query = {
+      _id: id
+  };
+
+  AccountsCollection.remove(query, function (err, result) {
+      if (err) {
+          retObj.status = false;
+          retObj.messages.push('error while deleting' + JSON.stringify(err));
+          callback(retObj);
+      } else {
+          retObj.status = true;
+          retObj.messages.push('successfully deleted');
+          retObj.data = result;
+          callback(retObj);
+      }
+  });
+};
+
 
 module.exports = new Users();

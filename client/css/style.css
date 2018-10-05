@@ -307,7 +307,7 @@ body{
   /* background-color: #17a2b8; */
   /* position: relative; */
   /* height: 300px; */
-  background-image: linear-gradient(rgb(231, 0, 19),rgb(0, 190, 127));
+  background-image: linear-gradient(rgb(42, 117, 187),rgb(255, 0, 55));
   border-bottom-left-radius: 0% 0%;
   border-bottom-right-radius: 0% 0%;
 }
@@ -363,4 +363,5 @@ body{
 }
 .a:hover{
   color: white;
+  text-decoration: none;
 }
