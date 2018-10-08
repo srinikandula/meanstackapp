@@ -5,27 +5,51 @@ console.log('Connecting to mongo using url - ' + config.mongo.url);
 mongoose.connect(config.mongo.url);
 
 
+var accountsSchema=new mongoose.Schema({
+    userName:String,
+    password:String,
+    contactPhone:Number
+})
+var tripSchema = new mongoose.Schema({
 
-var accountSchema = new mongoose.Schema({
-    userName : String,
-    password : String,
-    contactPhone: Number
-}, {
-    timestamps: true
-});
-
-
-
+    date:Date,
+    truckNumber: String,
+    dispatchDate:Date,
+    driverNumber: Number,
+    lrNumber:String,
+    destination:String,
+    partyName:String,
+    partyPhoneNumber:Number,
+    unloadingDate:Date,
+    quantity:Number,
+    freightPerMt:Number,
+    unloadingCharges:Number,
+    totalAmountPaid:Number,
+    invoiceAmount:Number,
+    profitOrLoss:Number,
+    serialNo:Number,
+    unloadingPoints: [{
+        index: 0,
+        name:String
+    }],
+    documents:[]
+})
+var paymentSchema = new mongoose.Schema({
+    date: Date,
+    amount: Number,
+    discription: String
+})
 var transSchema = new mongoose.Schema({
-  Date: Date,
-  Name:String,
-  mobileno: Number,
-  tonnage: Number,
-  rate: Number
+    Date: Date,
+    Name:String,
+    mobileno: Number,
+    tonnage: Number,
+    rate: Number
 });
 
 module.exports = {
-    AccountsCollection: mongoose.model('accounts', accountSchema, 'accounts'),
+    tripCollection: mongoose.model('trip', tripSchema, 'trip'),
+    paymentCollection: mongoose.model('payment', paymentSchema, 'payment'),
+    AccountsCollection: mongoose.model('accounts', accountsSchema, 'accounts'),
     transCollection: mongoose.model('transactions', transSchema, 'transactions')
-
 };

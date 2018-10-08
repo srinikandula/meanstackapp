@@ -6,40 +6,41 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <script src="components/angular/angular.js"></script>
-    <!-- <script src="../node_modules/angular/angular.js"></script> -->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>-->
-
     <script src="components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/tripsModule.js"></script>
+    <script src="./js/paymentModule.js" type="text/javascript"></script>
+    <script src="./js/loginModule.js" type="text/javascript"></script>
+    <script src="./js/transactionsModule.js" type="text/javascript"></script>
+    <script src="./js/usersModule.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css"
+          href="components/angular-ui-notification/dist/angular-ui-notification.css">
+    <script src="components/angular-ui-notification/dist/angular-ui-notification.js"></script>
+
+
     <script src="components/angular-cookies/angular-cookies.js"></script>
-
-    <script src="js/app.js"></script>
-    <script src="js/transactionsModule.js"></script>
-    <script src="js/usersModule.js"></script>
-
-    <!-- Compiled and minified JavaScript -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+          integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+          crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/sidenavbar-style.css">
+    <!--<script type="text/javascript" src="angular-growl-notifications.js"></script>-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 </head>
 
-<body ng-app="myApp">
+<body>
+<div ng-app="myApp">
+    <div ng-controller="loginController">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom" ng-if="isLoggedIn()">
 
-
-    <!-- fixed-top -->
-    <div ng-controller="myCtrl">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom" style="border-bottom: 1px solid;">
-            <a class="navbar-brand" href="#">DATA LOGISTICS</a>
+            <a class="navbar-brand">SRI KRISHNA LOGISTICS </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -48,34 +49,76 @@
                     <li class="nav-item active">
                         <a class="nav-link" ui-sref="login"><span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" ui-sref="transactions()">Transactions Form</a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Trip
+                        </a>
+                        <div class="dropdown-menu" style="background-color: #17a2b8;" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" ui-sref="addTrip">AddTrip</a>
+                            <a class="dropdown-item" ui-sref="tripsList">Trips List</a>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" ui-sref="transList">Transactions List</a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Transactions
+                        </a>
+                        <div class="dropdown-menu" style="background-color: #17a2b8;" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" ui-sref="transactions()">Transactions Form</a>
+                            <a class="dropdown-item" ui-sref="transList">Transactions List</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Payments
+                        </a>
+                        <div class="dropdown-menu" style="background-color: #17a2b8;" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" ui-sref="addPayment">Add Payment </a>
+                            <a class="dropdown-item" ui-sref="paymentList">Payments List</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" ui-sref="signup()">Create Account</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link" ui-sref="UserAccounts">User Accounts</a>
-                        </li>
+                        <a class="nav-link" ui-sref="UserAccounts">User Accounts</a>
+                    </li>
                 </ul>
-                       <a class="a"; href="#" ng-click="logOut()">LogOut</a>
+                <span class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;" ng-click="logOutUser()">LogOut</a>
+                </span>
+
             </div>
         </nav>
+
         <ui-view></ui-view>
     </div>
+</div>
+<div>
 
+</div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
+        integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
         crossorigin="anonymous"></script>
+<script src="components/ng-file-upload/ng-file-upload.js"></script>
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
 </body>
 
 </html>

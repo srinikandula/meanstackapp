@@ -1,0 +1,49 @@
+<div ng-controller="addorEditPaymentController">
+    <div class="container-fluid">
+        <!--<h1 style="text-align: center;">Payments List</h1>-->
+        <div>
+            <div class="row " >
+                <!--<div class="col-sm-3"></div>-->
+                <div class="col-sm-8 mx-auto">
+                    <div class="row" style="margin-top: 75px">
+                        <div class="col-6">
+                            <h2>Payments List</h2>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" style="float: right" ng-click="addpayment()">Add Payment</button>
+                            <input type="text" ng-model="searchbox" placeholder="Serach Any"  style="float: right">
+                        </div>
+                    </div>
+                    <table class="table table-hover ">
+                        <thead class="thead-inverse">
+                        <tr style="background-color:#9cb7d2">
+                            <th>Sno</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Discription</th>
+                            <th colspan="2">Edit(or)Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="payment in payments | filter:searchbox">
+                            <td scope="row">{{$index + 1}}</td>
+                            <td>{{payment.date |date : "dd.MM.y" }}</td>
+                            <td>{{payment.amount}}</td>
+                            <td>{{payment.discription}}</td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-info" style="float:right" ui-sref="paymentEdit({id:payment._id})"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" type="button" ng-click="paymentRemove(payment._id)"><i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <!--<div class="col-sm-3"></div>-->
+            </div>
+        </div>
+    </div>
+

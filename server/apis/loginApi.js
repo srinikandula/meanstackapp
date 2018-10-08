@@ -1,20 +1,19 @@
 var AccountsCollection = require('./../models/schemas').AccountsCollection;
 var jwt = require('jsonwebtoken');
-var config = require('./../config/config');
-
+var config = require('./../config/config.json');
 
 var LogIns = function(){
-
 };
 
 
 LogIns.prototype.login = function(req,callback){
     var retObj = {
-      status:false,
-      messages:[]
+        status:false,
+        messages:[]
     };
     var logInData = req.body;
-    AccountsCollection.findOne({userName:logInData.userName},function(err,user){
+    console.log("logInData",logInData);
+    AccountsCollection.findOne({userName:logInData.username},function(err,user){
         if(err || !user){
             retObj.status = false;
             retObj.messages.push("Error in loging the user",JSON.stringify(err));

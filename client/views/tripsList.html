@@ -1,0 +1,81 @@
+
+
+<!--<div class="input-group" >-->
+<!--<div class="input-group-prepend">-->
+<!--<span class="input-group-text filter-style">-->
+<!--<i class=" fa fa-filter" aria-hidden="true"></i>-->
+<!--</span>-->
+<!--</div>-->
+<!--<input class="form-control form-control-sm filter-input-style" id="inputName" type="text"-->
+<!--ng-model="searchtxt" placeholder="Search Any ...." required>-->
+<!--</div>-->
+<!--<h1 style="text-align: center">Trips List</h1>-->
+<div ng-controller="TripsController">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div class="row"  style="margin-top: 75px">
+                <div class="col-4">
+                    <h2 style="color: #0062cc">Trips List</h2>
+                </div>
+                <div class="col-3"></div>
+                <div class="col-5">
+                    <button class="btn btn-sm btn-info" type="button" ng-click="addtrip()" style="float: right">Add Trip</button>
+
+                    <input type="text" style="margin-right: 15px; float: right;" ng-model="searchbox" placeholder="Serach Any"  style="float: right">
+                </div>
+            </div>
+
+            <table class="table table-hover  table-responsive">
+                <thead class="thead-inverse">
+                <tr style="background-color:#9cb7d2">
+                    <th>Serial No</th>
+                    <th>Date</th>
+                    <th>Truck Number</th>
+                    <th>Dispatch Date</th>
+                    <th>Driver Number</th>
+                    <th>Lr Number</th>
+                    <th>Destination</th>
+                    <th>Party Name</th>
+                    <th>Party Phone Number</th>
+                    <th>Unloading Date</th>
+                    <th>Unloading Points</th>
+                    <th>Quantity</th>
+                    <th>Freight Per Mt</th>
+                    <th>Unloading Charges</th>
+                    <th>Total Amount Paid</th>
+                    <th>Invoice Amount</th>
+                    <th>Profit/Loss</th>
+                    <th colspan="2">Edit(or)Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="trip in tripes | filter:searchbox">
+                    <td>{{trip.serialNo}}</td>
+                    <td>{{trip.date |date :  "dd.MM.y"}}</td>
+                    <td>{{trip.truckNumber}}</td>
+                    <td>{{trip.dispatchDate |date :  "dd.MM.y"}}</td>
+                    <td>{{trip.driverNumber}}</td>
+                    <td>{{trip.lrNumber}}</td>
+                    <td>{{trip.destination}}</td>
+                    <td>{{trip.partyName}}</td>
+                    <td>{{trip.partyPhoneNumber}}</td>
+                    <td>{{trip.unloadingDate |date :  "dd.MM.y"}}</td>
+                    <td>{{trip.unloadingPoints[0].name}}</td>
+                    <td>{{trip.quantity}}</td>
+                    <td>{{trip.freightPerMt}}</td>
+                    <td>{{trip.unloadingCharges}}</td>
+                    <td>{{trip.totalAmountPaid}}</td>
+                    <td>{{trip.invoiceAmount}}</td>
+                    <td>{{trip.profitOrLoss}}</td>
+                    <td><button type="button" class="btn btn-info" ui-sref="tripEdit({id:trip._id})"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
+                    <td><button class="btn btn-danger" type="button" ng-click="tripRemove(trip._id)"><i class="fa fa-times" aria-hidden="true"></i></button></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="col-sm-1"></div>
+
+    </div>
+</div>

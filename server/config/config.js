@@ -4,7 +4,7 @@ function getUserHome() {
     return process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
 }
 
-var localConfigPath = getUserHome() + '/practice-config.json';
+var localConfigPath = getUserHome() + '/redbus-config.json';
 
 var projectConfigPath = __dirname + '/config.json';
 
@@ -14,7 +14,6 @@ if(process.env.NODE_ENV === "test") {
 }
 
 var selectedConfigPath;
-
 if(fs.existsSync(localConfigPath)) {
     selectedConfigPath = localConfigPath;
 } else if (fs.existsSync(projectConfigPath)) {
