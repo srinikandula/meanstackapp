@@ -89,7 +89,19 @@ app.config(['$httpProvider',function ($httpProvider) {
             }
         };
     }]);
-}])
+}]);
+
+app.config(['NotificationProvider', '$httpProvider', function (NotificationProvider, $httpProvider) {
+    NotificationProvider.setOptions({
+        delay: 3000,
+        startTop: 150,
+        startRight: 500,
+        verticalSpacing: 20,
+        horizontalSpacing: 20,
+        positionX: 'center',
+        positionY: 'bottom'
+    });
+}]);
 
 
 angular.module('UserValidation', []).directive('validPasswordC', function () {
